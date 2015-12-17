@@ -1,0 +1,52 @@
+body{
+  background-color: #F9F9F9;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 13px;
+}
+
+.page-header, footer{
+  background-color : #FFC52B;
+  margin : 0px;
+  min-height: 40px;
+}
+
+h1, .h1{
+  margin : 0px;
+  padding : 5px 20px;
+  color : white;
+  font-family: 'Mr Dafoe', cursive;
+}
+
+section{ 
+  margin : 30px;
+  min-height: 180px;
+}
+
+.container .jumbotron{
+  padding : 40px;
+}
+
+.navbar{
+  background-color: #EFEFEF;
+  min-height: 0px;
+  border-radius: 0px;
+}
+
+li{
+  padding : 2px;
+}
+
+label{
+  font-size: 20px;
+  margin-top: -5px;
+}
+
+#test{
+  min-height: 110px;
+}
+
+.glyphicon{
+  font-size: 30px;
+  margin-top: -10px;
+}
+
