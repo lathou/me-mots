@@ -1,3 +1,5 @@
+/*----------------- PAGE -----------------*/
+
 body{
   background-color: #F9F9F9;
   font-family: 'Open Sans Condensed', sans-serif;
@@ -5,21 +7,22 @@ body{
 }
 
 .page-header, footer{
-  background-color : #FFC52B;
+  background-color : #FDCF56;
   margin : 0px;
   min-height: 40px;
 }
 
 h1, .h1{
   margin : 0px;
-  padding : 5px 20px;
+  padding : 5px 50px 0px;
   color : white;
-  font-family: 'Mr Dafoe', cursive;
+  font-family: 'Devonshire', cursive;
+  font-size: 45px;
 }
 
 section{ 
-  margin : 30px;
-  min-height: 180px;
+  margin : 60px;
+  min-height: 300px;
 }
 
 .container .jumbotron{
@@ -40,27 +43,10 @@ label{
   font-size: 20px;
 }
 
+/*----------------- TEST -----------------*/
+
 #test{
   min-height: 110px;
-}
-
-#validation{
-  font-size: 30px;
-  color : #D9534F;
-}
-
-#validation.glyphicon-ok{
-   color : green;
-}
-
-.glyphicon-remove{
-  float : left;
-  margin-top: 2px;
-}
-
-#passe{
-  margin-top: 40px;
-  margin-bottom : -20px;
 }
 
 .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus{
@@ -68,13 +54,44 @@ label{
   cursor : text;
 }
 
-#mauvaiseReponse{
-  margin-top: 40px;
-  color : red;
-  display : none;
-  font-weight: bold;
+#correction{
+  font-size: 30px;
+  color : #D9534F;
 }
 
-#suivant {
-  margin-left: 10px;
+#correction.glyphicon-ok{
+   color : green;
+}
+
+#passe{
+  margin-top: 40px;
+}
+
+#passe .glyphicon-remove{
+  margin-top : 4px; 
+  float : left;
+}
+
+.badge{
+  margin-right : 4px;
+  border-radius: 3px;
+  margin-top : -3px;
+  background-color: #F3F3F3;
+}
+
+.progress{
+  height : 10px;
+  margin-bottom: 60px;
+}
+
+#resultat{
+  margin-top : -15px;
+}
+
+#compteurKo{
+  color : #D9534F;
+}
+
+#compteurOk{
+  color : green;
 }

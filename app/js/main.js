@@ -1,34 +1,44 @@
 var mot,
-	bonneReponse;
+	bonneReponse,
+	ok = 0,
+	ko = 0;
 var inputReponse = document.getElementById('inputReponse');
 var btnValider = document.getElementById('valider');
 var btnPasse = document.getElementById('passe');
-var validation = document.getElementById('validation');
+var correction = document.getElementById('correction');
 var form = document.getElementById('test');
+var compteurOk = document.getElementById('compteurOk');
+var compteurKo = document.getElementById('compteurKo');
+var progressBar = document.getElementById('progressBar');
 
+miseAJourResultats();
 genererMot();
 
 
 /*******************-Fonctions-***************************/
 
-function griserBoutonValider(){
-	if(inputReponse.value.length){
-		btnValider.className = 'btn btn-default';
-	}else{
-		btnValider.className = 'btn btn-default disabled';
-	}
-}
 
 function init(){
 	inputReponse.addEventListener('keyup', griserBoutonValider, false);
 	btnValider.addEventListener('click', affichageCorrection, false);
-	btnPasse.addEventListener('click', genererMot, false);
+	btnPasse.addEventListener('click', affichageCorrection, false);
 
-	validation.className='col-md-1';
+	correction.className='col-md-1';
 	inputReponse.value = '';
 	inputReponse.autofocus = true;
 	inputReponse.style.color = 'rgb(85, 85, 85)';
+	btnValider.disabled = true;
 	form.className = 'jumbotron text-center';
+}
+
+function griserBoutonValider(){
+	if(inputReponse.value.length){
+		btnValider.className = 'btn btn-default';
+		btnValider.disabled = false;
+	}else{
+		btnValider.className = 'btn btn-default disabled';
+		btnValider.disabled = true;
+	}
 }
 
 function genererMot(){	
@@ -63,21 +73,35 @@ function verifierMot(mot, saisie){
 }
 
 function affichageCorrection(){
-	if(!/disabled/.test(btnValider.className)){
 		if(verifierMot(mot, inputReponse.value)){		
-			validation.className='col-md-1 glyphicon glyphicon-ok';
+			correction.className='col-md-1 glyphicon glyphicon-ok';
 			form.className = 'jumbotron text-center has-success';
+			ok++;
 			setTimeout(genererMot, 1000);
+			
 		}else{
-			validation.className='col-md-1 glyphicon glyphicon-remove';
+			correction.className='col-md-1 glyphicon glyphicon-remove';
 			inputReponse.value = bonneReponse;
 			inputReponse.style.color = 'red';
 			btnValider.className = 'btn btn-default disabled';
 			btnValider.removeEventListener('click', affichageCorrection, false);
 			inputReponse.removeEventListener('keyup', griserBoutonValider, false);
 			form.className = 'jumbotron text-center has-error';
-			setTimeout(genererMot, 1000);
+			ko++;
+			setTimeout(genererMot, 1000);			
 		}
+	miseAJourResultats();
+}
+
+function miseAJourResultats(){
+	compteurOk.innerHTML = ok + ' <span class="glyphicon glyphicon-ok"></span>';
+	compteurKo.innerHTML = ko + ' <span class="glyphicon glyphicon-remove"></span>';
+	if(ok===0){
+		progressBar.setAttribute('aria-valuenow', 0);
+		progressBar.style.width = '0%';
+	}else{
+		progressBar.setAttribute('aria-valuenow', ok*100/(ok+ko));
+		progressBar.style.width = ok*100/(ok+ko) +'%';
 	}
 }
 
