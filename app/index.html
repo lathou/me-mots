@@ -27,11 +27,24 @@
     
     <div class="container">
       <section class="col-md-offset-2 col-md-8">
-        <form method="post" action="" class="jumbotron" id="test"> 
-          <label for="mot" class="col-md-5 text-center" id="emplacementMot">Mot</label>
-          <input type="text" name="mot" id="mot" class="col-md-4" maxlenght="40" autofocus/>
-          <button class="col-md-2">Valider</button> 
-          <span class="col-md-1 glyphicon glyphicon-ok"></span> 
+        <form method="post" action="" class="jumbotron text-center" id="test"> 
+          <label for="motReponse" class="col-md-5" id="motTest">Mot</label>
+
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="text" name="mot" id="motReponse"  class="form-control" maxlenght="40" autofocus/>
+
+              <span class="input-group-btn">
+                <button id="valider" class="btn btn-default disabled" type='button'>Valider</button>
+              </span>
+            </div>
+          </div>
+
+          <span class="col-md-1 glyphicon glyphicon-ok"></span>
+
+          <div class="row">
+            <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>Je passe !</button>
+          </div>
         </form>
 
       <section>
