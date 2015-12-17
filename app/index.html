@@ -22,17 +22,17 @@
         <li class = "col-md-2">Mon compte</li>
         <li class = "col-md-2">Contact</li>
       </ul>
-
     </nav>
     
     <div class="container">
       <section class="col-md-offset-2 col-md-8">
+
         <form method="post" action="" class="jumbotron text-center" id="test"> 
           <label for="motReponse" class="col-md-5" id="motTest">Mot</label>
 
           <div class="col-md-6">
             <div class="input-group">
-              <input type="text" name="mot" id="motReponse"  class="form-control" maxlenght="40" autofocus/>
+              <input type="text" name="mot" id="inputReponse"  class="form-control" maxlenght="40" autocomplete="off" autofocus/>
 
               <span class="input-group-btn">
                 <button id="valider" class="btn btn-default disabled" type='button'>Valider</button>
@@ -40,7 +40,7 @@
             </div>
           </div>
 
-          <span class="col-md-1 glyphicon glyphicon-ok"></span>
+          <span id="validation" class="col-md-1"></span>
 
           <div class="row">
             <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>Je passe !</button>
