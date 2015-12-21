@@ -10,13 +10,8 @@
   </head>
   
   <body>
-    <header class="page-header">
-      <div>
-        <h1 class=>Mé-mots</h1>
-      </div>
-    </header>
-
     <nav class="navbar">
+      <h1 class="nav-header">Mé-Mots</h1>
       <ul class="nav navbar-nav col-md-12 text-center">
         <li class = "col-md-offset-3 col-md-2">Accueil</li>
         <li class = "col-md-2">Mon compte</li>
@@ -24,16 +19,18 @@
       </ul>
     </nav>
 
-    <section class="container">
+
+    <section class="container text-center">
+      <h4>Entrez la traduction en <span>Anglais</span></h4>
 
       <div class="col-md-offset-1 col-md-10">  
-        <form method="post" action="" class="jumbotron text-center" id="test"> 
+        <form method="post" action="" class="jumbotron" id="test"> 
 
-          <label for="motReponse" class="col-md-4" id="motTest">Mot</label>
+          <label for="inputReponse" class="col-md-4" id="motTest">Mot</label>
 
           <div class="col-md-7">
             <div class="input-group">
-              <input type="text" name="mot" id="inputReponse"  class="form-control" maxlenght="40" autocomplete="off" autofocus/>
+              <input type="text" name="mot" id="inputReponse" class="form-control" maxlenght="40" autocomplete="off" autofocus/>
 
               <span class="input-group-btn">
                 <button id="valider" class="btn btn-default disabled" type='button' disabled="true">Valider</button>
@@ -62,6 +59,7 @@
       </div>  
 
     </section>
+
 
     <footer>
       <p>copyright © Lathou & Phiephie</p>

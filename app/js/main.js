@@ -14,6 +14,13 @@ var progressBar = document.getElementById('progressBar');
 miseAJourResultats();
 genererMot();
 
+document.addEventListener('keydown',function(e){
+	if(e.keyCode === 13){
+		e.preventDefault();
+		affichageCorrection();
+	}
+}, false);
+
 
 /*******************-Fonctions-***************************/
 
@@ -25,7 +32,7 @@ function init(){
 
 	correction.className='col-md-1';
 	inputReponse.value = '';
-	inputReponse.autofocus = true;
+	inputReponse.focus();
 	inputReponse.style.color = 'rgb(85, 85, 85)';
 	btnValider.disabled = true;
 	form.className = 'jumbotron text-center';
@@ -45,7 +52,8 @@ function genererMot(){
 	init();
 
 	var mots = [{mot: 'soleil', traduction: 'sun'}, {mot: 'chocolat', traduction: 'chocolate'}, 
-	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}];
+	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}, {mot: 'stylo', traduction: 'pen'}, 
+	{mot: 'lit', traduction: 'bed'}, {mot: 'porte', traduction: 'door'}];
 	var ancienMot = mot;
 	while(mot === ancienMot || !mot){
 		mot = mots[Math.floor(Math.random()*mots.length)].mot;
@@ -57,7 +65,8 @@ function genererMot(){
 
 function verifierMot(mot, saisie){
 	var mots = [{mot: 'soleil', traduction: 'sun'}, {mot: 'chocolat', traduction: 'chocolate'}, 
-	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}];
+	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}, {mot: 'stylo', traduction: 'pen'}, 
+	{mot: 'lit', traduction: 'bed'}, {mot: 'porte', traduction: 'door'}];
 	var verifie = false;
 
 	mots.forEach(function(value, id, array){

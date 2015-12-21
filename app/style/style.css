@@ -6,16 +6,18 @@ body{
   font-size: 13px;
 }
 
-.page-header, footer{
+.navbar, footer{
   background-color : #FDCF56;
   margin : 0px;
   min-height: 40px;
+  color : white;
+  border-radius: 0px;
+  font-weight: bold;
 }
 
 h1, .h1{
   margin : 0px;
   padding : 5px 50px 0px;
-  color : white;
   font-family: 'Devonshire', cursive;
   font-size: 45px;
 }
@@ -27,12 +29,6 @@ section{
 
 .container .jumbotron{
   padding : 40px;
-}
-
-.navbar{
-  background-color: #EFEFEF;
-  min-height: 0px;
-  border-radius: 0px;
 }
 
 li{
