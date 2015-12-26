@@ -24,7 +24,7 @@ h1, .h1{
 
 section{ 
   margin : 60px;
-  min-height: 300px;
+  min-height: 400px;
 }
 
 .container .jumbotron{
@@ -34,16 +34,34 @@ section{
 li{
   padding : 2px;
 }
+/*----------------Options test ------------*/
 
+#options label{
+  font-weight: normal;
+}
 
+#repetition{
+  width : 40px;
+  padding: 0px 0px 0px 5px;
+  margin-left : 2px;
+}
+
+#langues{
+  width : 150px;
+  margin: 10px 2px;
+  padding : 0px 5px;
+}
 
 /*----------------- TEST -----------------*/
+#test-window{
+  display : none;
+}
 
 #test{
   min-height: 110px;
 }
 
-label{
+#test label{
   font-size: 20px;
 }
 

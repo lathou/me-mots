@@ -1,9 +1,11 @@
 var mots = [],
 	MotCourant,
+	repetition,
 	ok = 0,
 	ko = 0;
 
 var form = document.getElementById('test');
+var motTest = document.getElementById('motTest');
 var inputReponse = document.getElementById('inputReponse');
 var btnValider = document.getElementById('valider');
 var btnPasse = document.getElementById('passe');
@@ -11,6 +13,7 @@ var correction = document.getElementById('correction');
 var compteurOk = document.getElementById('compteurOk');
 var compteurKo = document.getElementById('compteurKo');
 var progressBar = document.getElementById('progressBar');
+
 
 document.addEventListener('keydown',function(e){
 	if(e.keyCode === 13){
@@ -29,16 +32,27 @@ function Mot(fr,en,score){
 var mot1 = new Mot('soleil', 'sun');
 var mot2 = new Mot('chocolat', 'chocolate');
 var mot3 = new Mot('singe', 'monkey');
-var mot4 = new Mot('fauteuil', 'sofa');
+/*var mot4 = new Mot('fauteuil', 'sofa');
 var mot5 = new Mot('stylo', 'pen');
 var mot6 = new Mot('lit', 'bed');
-var mot7 = new Mot('porte', 'door');
-mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
+var mot7 = new Mot('porte', 'door');*/
+mots.push(mot1, mot2, mot3/*, mot4, mot5, mot6, mot7*/);
 
-
-//départ
-miseAJourResultats();
-genererMot();
+//Options
+var btnOption = document.getElementById('btnOption'),
+	fenetreOption = document.getElementById('options-window'),
+	fenetreTest = document.getElementById('test-window'),
+	inputRepetition = document.getElementById('repetition');
+	
+btnOption.addEventListener('click', function(){
+	if(inputRepetition.value.length && inputRepetition.value > 0 && inputRepetition.value <= 10){
+		repetition = inputRepetition.value;	
+		fenetreTest.style.display = 'block';
+		fenetreOption.style.display = 'none';
+		miseAJourResultats();
+		genererMot();
+	}
+}, false);
 
 /*******************-Fonctions-***************************/
 
@@ -73,13 +87,15 @@ function genererMot(){
 		while(MotCourant === ancienMot || !MotCourant){
 			MotCourant = mots[Math.floor(Math.random()*mots.length)];
 		}
+
 	} else if(mots.length === 1){
-		MotCourant = mots[0];
+		MotCourant = mots[0];		
+
 	}else if(mots.length === 0){
 		desactiverBoutonEtInput();
+		MotCourant.fr = ' ';
 	}
 
-	var motTest = document.getElementById('motTest');
 	motTest.innerHTML = MotCourant.fr;
 }
 
@@ -98,7 +114,7 @@ function afficheVrai(){
 	ok++;
 	MotCourant.score ++;
 	console.log(MotCourant.fr + ' ' + MotCourant.score);
-	if(MotCourant.score >= 2){
+	if(MotCourant.score >= repetition){
 		mots.splice(mots.indexOf(MotCourant),1);
 	}
 

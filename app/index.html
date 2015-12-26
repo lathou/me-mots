@@ -19,44 +19,59 @@
       </ul>
     </nav>
 
-
     <section class="container text-center">
-      <h4>Entrez la traduction en <span>Anglais</span></h4>
-
+      
       <div class="col-md-offset-1 col-md-10">  
-        <form method="post" action="" class="jumbotron" id="test"> 
+        <div id="options-window">
+          <h4>Choisissez vos options</h4>
+          <form id="options" class="form-inline jumbotron">           
+            <label for="repetition">Nombre de réussites néscessaires (entre 1 et 10): </label>
+            <input type="number" id="repetition" name="repetition" class="form-control" min="1" max="10"  oninput="if(value.length>2)value=value.slice(0,2)">
+            <br/>  
+            <label for="repetition">Dificulté : </label>          
+            <select name="langues" id="langues" class="form-control">
+              <option value="en">Français -->Anglais</option>
+              <option value ="fr">Anglais --> Français</option>
+            </select>
+            <br/>
+            <button type="button" class="btn btn-default" id="btnOption">OK</button>
+          </form>
+        </div>
 
-          <label for="inputReponse" class="col-md-4" id="motTest"></label>
+        <div id="test-window">
+          <h4>Entrez la traduction en <span id="langue"></span></h4>
+          <form method="post" action="" class="jumbotron" id="test"> 
+            <label for="inputReponse" class="col-md-4" id="motTest"></label>
 
-          <div class="col-md-7">
-            <div class="input-group">
-              <input type="text" name="mot" id="inputReponse" class="form-control" maxlenght="40" autocomplete="off" autofocus/>
+            <div class="col-md-7">
+              <div class="input-group">
+                <input type="text" name="mot" id="inputReponse" class="form-control" maxlength="40" autocomplete="off" autofocus/>
 
-              <span class="input-group-btn">
-                <button id="valider" class="btn btn-default" type='button' disabled="true">Valider</button>
-              </span>
+                <span class="input-group-btn">
+                  <button id="valider" class="btn btn-default" type='button' disabled>Valider</button>
+                </span>
+              </div>
+            </div>
+
+            <span id="correction" class="col-md-1"></span>
+
+            <div class="row">
+              <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger btn-sm" type="button">
+                <span class="glyphicon glyphicon-remove"></span>Je passe !
+              </button>
+            </div> 
+          </form>     
+
+          <div class="row col-md-offset-1 col-md-10" id="resultat">
+            <span class="badge col-md-1"  id="compteurOk"></span><span class="badge col-md-1" id="compteurKo"></span>
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                <span class="sr-only">60% Complete</span>
+              </div>
             </div>
           </div>
-
-          <span id="correction" class="col-md-1"></span>
-
-          <div class="row">
-            <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger btn-sm" type="button">
-              <span class="glyphicon glyphicon-remove"></span>Je passe !
-            </button>
-          </div> 
-
-        </form>
-      </div>
-
-      <div class="row col-md-offset-1 col-md-10" id="resultat">
-        <span class="badge col-md-1"  id="compteurOk"></span><span class="badge col-md-1" id="compteurKo"></span>
-        <div class="progress">
-          <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-            <span class="sr-only">60% Complete</span>
-          </div>
-        </div>
-      </div>  
+        </div> 
+      </div> 
 
     </section>
 
