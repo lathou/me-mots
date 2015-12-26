@@ -1,11 +1,8 @@
-var mot,
+var mots = [],
+	MotCourant,
 	bonneReponse,
 	ok = 0,
 	ko = 0;
-
-var mots = [{mot: 'soleil', traduction: 'sun'}, {mot: 'chocolat', traduction: 'chocolate'}, 
-	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}, {mot: 'stylo', traduction: 'pen'}, 
-	{mot: 'lit', traduction: 'bed'}, {mot: 'porte', traduction: 'door'}];
 
 var form = document.getElementById('test');
 var inputReponse = document.getElementById('inputReponse');
@@ -23,9 +20,28 @@ document.addEventListener('keydown',function(e){
 	}
 }, false);
 
+//Initialisation des mots
+function Mot(fr,en,score){
+	this.fr = fr;
+	this.en = en;
+	this.score = 0;
+}
+
+var mot1 = new Mot('soleil', 'sun');
+var mot2 = new Mot('chocolat', 'chocolate');
+var mot3 = new Mot('singe', 'monkey');
+var mot4 = new Mot('fauteuil', 'sofa');
+var mot5 = new Mot('stylo', 'pen');
+var mot6 = new Mot('lit', 'bed');
+var mot7 = new Mot('porte', 'door');
+mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
+
+
+
+
+
 miseAJourResultats();
 genererMot();
-
 
 /*******************-Fonctions-***************************/
 
@@ -55,13 +71,19 @@ function griserBoutonValider(){
 
 function genererMot(){	
 	init();
-	var ancienMot = mot;
-	while(mot === ancienMot || !mot){
-		mot = mots[Math.floor(Math.random()*mots.length)].mot;
-
-		var motTest = document.getElementById('motTest');
-		motTest.innerHTML = mot;
+	if(mots.length>1){
+		var ancienMot = MotCourant;
+		while(MotCourant === ancienMot || !MotCourant){
+			MotCourant = mots[Math.floor(Math.random()*mots.length)];
+		}
+	} else if(mots.length === 1){
+		MotCourant = mots[0];
+	}else if(mots.length === 0){
+		desactiverBoutonEtInput();
 	}
+
+	var motTest = document.getElementById('motTest');
+	motTest.innerHTML = MotCourant.fr;
 }
 
 function affichageCorrection(){
@@ -78,6 +100,12 @@ function afficheVrai(){
 	correction.className='col-md-1 glyphicon glyphicon-ok';
 	form.className = 'jumbotron text-center has-success';
 	ok++;
+	MotCourant.score ++;
+	console.log(MotCourant.fr + ' ' + MotCourant.score);
+	if(MotCourant.score >= 2){
+		mots.splice(mots.indexOf(MotCourant),1);
+	}
+
 	setTimeout(genererMot, 1000);
 	miseAJourResultats();
 }
@@ -89,6 +117,7 @@ function afficheFaux(){
 	inputReponse.style.color = 'red';
 	form.className = 'jumbotron text-center has-error';
 	ko++;
+	MotCourant.score = 0;
 	setTimeout(genererMot, 1000);
 	miseAJourResultats();	
 }
@@ -104,8 +133,8 @@ function desactiverBoutonEtInput(){
 
 function reponseExact(){
 	mots.forEach(function(value, id, array){
-		if (mot === mots[id].mot){
-			bonneReponse = mots[id].traduction;
+		if (MotCourant === mots[id]){
+			bonneReponse = mots[id].en;
 		}
 	});
 	return bonneReponse;	
