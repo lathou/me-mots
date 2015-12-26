@@ -47,7 +47,7 @@ label{
   font-size: 20px;
 }
 
-.btn.disabled:hover{
+.btn[disabled], .form-control[disabled]{
   cursor : default;
 }
 
