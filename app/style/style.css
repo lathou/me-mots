@@ -35,9 +35,7 @@ li{
   padding : 2px;
 }
 
-label{
-  font-size: 20px;
-}
+
 
 /*----------------- TEST -----------------*/
 
@@ -45,9 +43,16 @@ label{
   min-height: 110px;
 }
 
-.btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus{
-  background-color: #F7F7F7;
-  cursor : text;
+label{
+  font-size: 20px;
+}
+
+.btn.disabled:hover{
+  cursor : default;
+}
+
+.form-control[disabled]{
+  background-color : #FFFFFF;
 }
 
 #correction{

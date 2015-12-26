@@ -35,6 +35,7 @@ function init(){
 	inputReponse.focus();
 	inputReponse.style.color = 'rgb(85, 85, 85)';
 	btnValider.disabled = true;
+	inputReponse.disabled = false;
 	form.className = 'jumbotron text-center';
 }
 
@@ -63,6 +64,30 @@ function genererMot(){
 	}
 }
 
+function affichageCorrection(){
+		inputReponse.removeEventListener('keyup', griserBoutonValider, false);
+		btnValider.removeEventListener('click', affichageCorrection, false);
+		btnPasse.removeEventListener('click', affichageCorrection, false);
+		inputReponse.disabled = "disabled";
+
+		if(verifierMot(mot, inputReponse.value)){		
+			correction.className='col-md-1 glyphicon glyphicon-ok';
+			form.className = 'jumbotron text-center has-success';
+			ok++;
+			setTimeout(genererMot, 1000);
+			
+		}else{
+			correction.className='col-md-1 glyphicon glyphicon-remove';
+			inputReponse.value = bonneReponse;
+			inputReponse.style.color = 'red';
+			btnValider.className = 'btn btn-default disabled';
+			form.className = 'jumbotron text-center has-error';
+			ko++;
+			setTimeout(genererMot, 1000);			
+		}
+	miseAJourResultats();
+}
+
 function verifierMot(mot, saisie){
 	var mots = [{mot: 'soleil', traduction: 'sun'}, {mot: 'chocolat', traduction: 'chocolate'}, 
 	{mot: 'singe', traduction: 'monkey'}, {mot: 'fauteuil', traduction: 'sofa'}, {mot: 'stylo', traduction: 'pen'}, 
@@ -79,27 +104,6 @@ function verifierMot(mot, saisie){
 		}
 	});
 	return verifie;	
-}
-
-function affichageCorrection(){
-		if(verifierMot(mot, inputReponse.value)){		
-			correction.className='col-md-1 glyphicon glyphicon-ok';
-			form.className = 'jumbotron text-center has-success';
-			ok++;
-			setTimeout(genererMot, 1000);
-			
-		}else{
-			correction.className='col-md-1 glyphicon glyphicon-remove';
-			inputReponse.value = bonneReponse;
-			inputReponse.style.color = 'red';
-			btnValider.className = 'btn btn-default disabled';
-			btnValider.removeEventListener('click', affichageCorrection, false);
-			inputReponse.removeEventListener('keyup', griserBoutonValider, false);
-			form.className = 'jumbotron text-center has-error';
-			ko++;
-			setTimeout(genererMot, 1000);			
-		}
-	miseAJourResultats();
 }
 
 function miseAJourResultats(){
