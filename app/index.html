@@ -11,9 +11,9 @@
   
   <body>
     <nav class="navbar">
-      <h1 class="nav-header">Mé-Mots</h1>
-      <ul class="nav navbar-nav col-md-12 text-center">
-        <li class = "col-md-offset-3 col-md-2">Accueil</li>
+      <h1 class="nav-header col-sm-4"><a class="nav-brand" href="#">Mé-Mots</a></h1>
+      <ul class="nav navbar-nav col-md-8 text-center">
+        <li class = "col-md-offset-6 col-md-2">Accueil</li>
         <li class = "col-md-2">Mon compte</li>
         <li class = "col-md-2">Contact</li>
       </ul>
@@ -30,11 +30,11 @@
             <br/>  
             <label for="repetition">Dificulté : </label>          
             <select name="langues" id="langues" class="form-control">
-              <option value="en">Français -->Anglais</option>
-              <option value ="fr">Anglais --> Français</option>
+              <option value="en">Français → Anglais</option>
+              <option value ="fr">Anglais → Français</option>
             </select>
             <br/>
-            <button type="button" class="btn btn-default" id="btnOption">OK</button>
+            <button type="button" class="btn btn-warning" id="btnOption">Lancer le test</button>
           </form>
         </div>
 
@@ -66,7 +66,6 @@
             <span class="badge col-md-1"  id="compteurOk"></span><span class="badge col-md-1" id="compteurKo"></span>
             <div class="progress">
               <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                <span class="sr-only">60% Complete</span>
               </div>
             </div>
           </div>
