@@ -1,6 +1,5 @@
 var mots = [],
 	MotCourant,
-	bonneReponse,
 	ok = 0,
 	ko = 0;
 
@@ -37,9 +36,7 @@ var mot7 = new Mot('porte', 'door');
 mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
 
 
-
-
-
+//départ
 miseAJourResultats();
 genererMot();
 
@@ -87,8 +84,7 @@ function genererMot(){
 }
 
 function affichageCorrection(){
-		bonneReponse = reponseExact();
-		if(bonneReponse.toLowerCase() === inputReponse.value.toLowerCase()){		
+		if(inputReponse.value.toLowerCase() === MotCourant.en.toLowerCase()){		
 			afficheVrai();			
 		}else{
 			afficheFaux();
@@ -113,7 +109,7 @@ function afficheVrai(){
 function afficheFaux(){
 	desactiverBoutonEtInput();	
 	correction.className='col-md-1 glyphicon glyphicon-remove';
-	inputReponse.value = reponseExact();
+	inputReponse.value = MotCourant.en;
 	inputReponse.style.color = 'red';
 	form.className = 'jumbotron text-center has-error';
 	ko++;
@@ -128,16 +124,6 @@ function desactiverBoutonEtInput(){
 	inputReponse.disabled = true;
 	btnValider.disabled = true;
 	btnPasse.disabled = true;
-}
-
-
-function reponseExact(){
-	mots.forEach(function(value, id, array){
-		if (MotCourant === mots[id]){
-			bonneReponse = mots[id].en;
-		}
-	});
-	return bonneReponse;	
 }
 
 function miseAJourResultats(){
