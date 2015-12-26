@@ -14,7 +14,6 @@ var compteurOk = document.getElementById('compteurOk');
 var compteurKo = document.getElementById('compteurKo');
 var progressBar = document.getElementById('progressBar');
 
-
 document.addEventListener('keydown',function(e){
 	if(e.keyCode === 13){
 		e.preventDefault();
@@ -22,33 +21,49 @@ document.addEventListener('keydown',function(e){
 	}
 }, false);
 
-//Initialisation des mots
-function Mot(fr,en,score){
-	this.fr = fr;
-	this.en = en;
-	this.score = 0;
-}
-
-var mot1 = new Mot('soleil', 'sun');
-var mot2 = new Mot('chocolat', 'chocolate');
-var mot3 = new Mot('singe', 'monkey');
-/*var mot4 = new Mot('fauteuil', 'sofa');
-var mot5 = new Mot('stylo', 'pen');
-var mot6 = new Mot('lit', 'bed');
-var mot7 = new Mot('porte', 'door');*/
-mots.push(mot1, mot2, mot3/*, mot4, mot5, mot6, mot7*/);
-
 //Options
 var btnOption = document.getElementById('btnOption'),
 	fenetreOption = document.getElementById('options-window'),
 	fenetreTest = document.getElementById('test-window'),
-	inputRepetition = document.getElementById('repetition');
-	
+	inputRepetition = document.getElementById('repetition'),
+	langue = document.getElementById('langues'),
+	langueChoisie = document.getElementById('langueChoisie');
+
 btnOption.addEventListener('click', function(){
 	if(inputRepetition.value.length && inputRepetition.value > 0 && inputRepetition.value <= 10){
-		repetition = inputRepetition.value;	
+		repetition = inputRepetition.value;
+
+		//Initialisation des mots
+		function Mot(fr,en,score){
+			this.fr = fr;
+			this.en = en;
+			this.score = 0;
+			if(langue.value === 'en'){
+				this.motAAfficher = this.fr;
+				this.motADeviner = this.en;
+			}else if(langue.value === 'fr'){
+				this.motAAfficher = this.en;
+				this.motADeviner = this.fr;
+			}
+		}
+
+		var mot1 = new Mot('soleil', 'sun');
+		var mot2 = new Mot('chocolat', 'chocolate');
+		var mot3 = new Mot('singe', 'monkey');
+		/*var mot4 = new Mot('fauteuil', 'sofa');
+		var mot5 = new Mot('stylo', 'pen');
+		var mot6 = new Mot('lit', 'bed');
+		var mot7 = new Mot('porte', 'door');*/
+		mots.push(mot1, mot2, mot3/*, mot4, mot5, mot6, mot7*/);
+
+		//Départ
 		fenetreTest.style.display = 'block';
 		fenetreOption.style.display = 'none';
+		if(langue.value === 'en'){
+			langueChoisie.innerHTML = 'Anglais';
+		}else if(langue.value === 'fr'){
+			langueChoisie.innerHTML = 'Français';
+		}
 		miseAJourResultats();
 		genererMot();
 	}
@@ -93,14 +108,14 @@ function genererMot(){
 
 	}else if(mots.length === 0){
 		desactiverBoutonEtInput();
-		MotCourant.fr = ' ';
+		MotCourant.motAAfficher = ' ';
 	}
 
-	motTest.innerHTML = MotCourant.fr;
+	motTest.innerHTML = MotCourant.motAAfficher;
 }
 
 function affichageCorrection(){
-		if(inputReponse.value.toLowerCase() === MotCourant.en.toLowerCase()){		
+		if(inputReponse.value.toLowerCase() === MotCourant.motADeviner.toLowerCase()){		
 			afficheVrai();			
 		}else{
 			afficheFaux();
@@ -113,7 +128,6 @@ function afficheVrai(){
 	form.className = 'jumbotron text-center has-success';
 	ok++;
 	MotCourant.score ++;
-	console.log(MotCourant.fr + ' ' + MotCourant.score);
 	if(MotCourant.score >= repetition){
 		mots.splice(mots.indexOf(MotCourant),1);
 	}
@@ -125,7 +139,7 @@ function afficheVrai(){
 function afficheFaux(){
 	desactiverBoutonEtInput();	
 	correction.className='col-md-1 glyphicon glyphicon-remove';
-	inputReponse.value = MotCourant.en;
+	inputReponse.value = MotCourant.motADeviner;
 	inputReponse.style.color = 'red';
 	form.className = 'jumbotron text-center has-error';
 	ko++;
