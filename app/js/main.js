@@ -1,7 +1,4 @@
-var mots = [],
-	scoreMots = [],
-	MotCourant,
-	repetition,
+var repetition,
 	ok = 0,
 	ko = 0;
 
@@ -57,6 +54,7 @@ btnOption.addEventListener('click', function(){
 		var mot7 = new Mot('porte', 'door');*/
 		mots.push(mot1, mot2, mot3/*, mot4, mot5, mot6, mot7*/);
 
+
 		//Départ
 		fenetreTest.style.display = 'block';
 		fenetreOption.style.display = 'none';
@@ -65,8 +63,10 @@ btnOption.addEventListener('click', function(){
 		}else if(langue.value === 'fr'){
 			langueChoisie.innerHTML = 'Français';
 		}
-		miseAJourResultats();
-		genererMot();
+
+		afficherNouveauMot();
+		Score.afficher();				
+		init();
 	}
 }, false);
 
@@ -75,9 +75,9 @@ btnOption.addEventListener('click', function(){
 
 function init(){
 	inputReponse.addEventListener('keyup', griserBoutonValider, false);
-	btnValider.addEventListener('click', affichageCorrection, false);
-	btnPasse.addEventListener('click', afficheFaux, false);
-	document.addEventListener('keydown',toucheEntree, false);
+	btnValider.addEventListener('click', afficherCorrection, false);
+	btnPasse.addEventListener('click', afficherFaux, false);
+	document.addEventListener('keydown', validerParEntree, false);
 
 	form.className = 'jumbotron text-center';
 	correction.className='col-md-1';
@@ -89,6 +89,12 @@ function init(){
 	btnPasse.disabled = false;	
 }
 
+function validerParEntree(e){
+	if(e.keyCode === 13){
+		afficherCorrection();
+	}
+}
+
 function griserBoutonValider(){
 	if(inputReponse.value.length){
 		btnValider.disabled = false;
@@ -97,88 +103,53 @@ function griserBoutonValider(){
 	}
 }
 
-function toucheEntree(e){
-	if(e.keyCode === 13){
-		affichageCorrection();
-	}
-}
-
-function genererMot(){	
-	init();
-	if(mots.length>1){
-		var ancienMot = MotCourant;
-		while(MotCourant === ancienMot || !MotCourant){
-			MotCourant = mots[Math.floor(Math.random()*mots.length)];
-		}
-	} else if(mots.length === 1){
-		MotCourant = mots[0];		
-	}else if(mots.length === 0){
-		desactiverBoutonEtInput();
-		MotCourant.motAAfficher = ' ';	
-		for(var i = 0; i<scoreMots.length; i++){
-			console.log(scoreMots[i].fr + ':' + (scoreMots[i].ok * 100)/(scoreMots[i].ok+scoreMots[i].ko) + '%');
-		}
-	}
-
-	motTest.innerHTML = MotCourant.motAAfficher;
-}
-
-function affichageCorrection(){
-	if(inputReponse.value.toLowerCase() === MotCourant.motADeviner.toLowerCase()){		
-		afficheVrai();			
-	}else{
-		afficheFaux();
-	}	
-}
-
-function afficheVrai(){
-	desactiverBoutonEtInput();
-	correction.className='col-md-1 glyphicon glyphicon-ok';
-	form.className = 'jumbotron text-center has-success';
-	ok++;
-	MotCourant.reussite++;
-	MotCourant.ok++;
-
-	if(MotCourant.reussite >= repetition){
-		mots.splice(mots.indexOf(MotCourant),1);
-		scoreMots.push(MotCourant);
-	}
-
-	setTimeout(genererMot, 1000);
-	miseAJourResultats();
-}
-
-function afficheFaux(){
-	desactiverBoutonEtInput();	
-	correction.className='col-md-1 glyphicon glyphicon-remove';
-	inputReponse.value = MotCourant.motADeviner;
-	inputReponse.style.color = 'red';
-	form.className = 'jumbotron text-center has-error';
-	ko++;
-	MotCourant.reussite = 0;
-	MotCourant.ko++;
-	setTimeout(genererMot, 1000);
-	miseAJourResultats();	
-}
-		
 function desactiverBoutonEtInput(){
-	btnValider.removeEventListener('click', affichageCorrection, false);
-	btnPasse.removeEventListener('click', affichageCorrection, false);
-	document.removeEventListener('keydown',toucheEntree, false);
+	btnValider.removeEventListener('click', afficherCorrection, false);
+	btnPasse.removeEventListener('click', afficherFaux, false);
+	document.removeEventListener('keydown',validerParEntree, false);
 	inputReponse.disabled = true;
 	btnValider.disabled = true;
 	btnPasse.disabled = true;
 }
 
-function miseAJourResultats(){
-	compteurOk.innerHTML = ok + ' <span class="glyphicon glyphicon-ok"></span>';
-	compteurKo.innerHTML = ko + ' <span class="glyphicon glyphicon-remove"></span>';
-	if(ok===0){
-		progressBar.setAttribute('aria-valuenow', 0);
-		progressBar.style.width = '0%';
+function afficherNouveauMot(){	
+	init();
+	if(mots.length >= 1){
+		motTest.innerHTML = Dictionnaire.genererMot().motAAfficher;
 	}else{
-		progressBar.setAttribute('aria-valuenow', ok*100/(ok+ko));
-		progressBar.style.width = ok*100/(ok+ko) +'%';
-	}
+		motTest.innerHTML = ' ';
+		desactiverBoutonEtInput();
+	}	
 }
 
+function afficherCorrection(){
+	var saisie = inputReponse.value;
+
+	if (Dictionnaire.isCorrect(saisie)){		
+		afficherVrai();		
+	}else{		
+		afficherFaux();		
+	}	
+}
+
+function afficherVrai(){	
+	desactiverBoutonEtInput();
+	correction.className='col-md-1 glyphicon glyphicon-ok';
+	form.className = 'jumbotron text-center has-success';
+	
+	Score.augmenter();
+	Score.afficher();
+	setTimeout(afficherNouveauMot, 1000);
+}
+
+function afficherFaux(){	
+	desactiverBoutonEtInput();	
+	correction.className='col-md-1 glyphicon glyphicon-remove';
+	inputReponse.value = MotCourant.motADeviner;
+	inputReponse.style.color = 'red';
+	form.className = 'jumbotron text-center has-error';
+	
+	Score.diminuer();
+	Score.afficher();
+	setTimeout(afficherNouveauMot, 1000);
+}
