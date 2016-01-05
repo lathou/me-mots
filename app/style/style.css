@@ -3,7 +3,7 @@
 body{
   background-color: #F9F9F9;
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .navbar, footer{
@@ -32,7 +32,11 @@ h1, .h1{
   margin : 0px;
   padding : 5px 50px 0px;
   font-family: 'Devonshire', cursive;
-  font-size: 45px;
+  font-size: 50px;
+}
+
+h3, .h3{
+  font-size : 22px;
 }
 
 section{ 
@@ -40,11 +44,16 @@ section{
 }
 
 .container .jumbotron{
-  padding : 40px;
+  padding : 60px;
 }
 
 li{
   padding : 2px;
+}
+
+.form-control, .btn{
+  font-size : 16px;
+  height : 39px;
 }
 /*----------------Options test ------------*/
 
@@ -64,17 +73,17 @@ li{
   padding : 0px 5px;
 }
 
+#options-window .btn{
+  margin-top: 30px;
+}
+
 /*----------------- TEST -----------------*/
 #test-window{
   display : none;
 }
 
-#test{
-  min-height: 110px;
-}
-
 #test label{
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .btn[disabled], .form-control[disabled]{
@@ -86,7 +95,7 @@ li{
 }
 
 #correction{
-  font-size: 30px;
+  font-size: 35px;
   color : #D9534F;
 }
 
@@ -108,10 +117,11 @@ li{
   border-radius: 3px;
   margin-top : -3px;
   background-color: #F3F3F3;
+  font-size: 14px;
 }
 
 .progress{
-  height : 10px;
+  height : 15px;
   margin-bottom: 60px;
 }
 

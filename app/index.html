@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Mé-mots</title>
@@ -23,7 +23,7 @@
       
       <div class="col-md-offset-1 col-md-10">  
         <div id="options-window">
-          <h4>Choisissez vos options</h4>
+          <h3>Choisissez vos options</h3>
           <form id="options" class="form-inline jumbotron">           
             <label for="repetition">Nombre de répétition pour chaque mot (entre 1 et 10): </label>
             <input type="number" id="repetition" name="repetition" class="form-control" min="1" max="10"  oninput="if(value.length>2)value=value.slice(0,2)">
@@ -39,24 +39,27 @@
         </div>
 
         <div id="test-window">
-          <h4>Entrez la traduction en <span id="langueChoisie"></span></h4>
+          <h3>Entrez la traduction en <span id="langueChoisie"></span></h3>
           <form method="post" action="" class="jumbotron" id="test"> 
-            <label for="inputReponse" class="col-md-4" id="motTest"></label>
-
-            <div class="col-md-7">
-              <div class="input-group">
-                <input type="text" name="mot" id="inputReponse" class="form-control" maxlength="40" autocomplete="off" autofocus/>
-
-                <span class="input-group-btn">
-                  <button id="valider" class="btn btn-default" type='button' disabled>Valider</button>
-                </span>
-              </div>
-            </div>
-
-            <span id="correction" class="col-md-1"></span>
 
             <div class="row">
-              <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger btn-sm" type="button">
+              <label for="inputReponse" class="col-md-4" id="motTest"></label>
+
+              <div class="col-md-7">
+                <div class="input-group">
+                  <input type="text" name="mot" id="inputReponse" class="form-control" maxlength="40" autocomplete="off" autofocus/>
+
+                  <span class="input-group-btn">
+                    <button id="valider" class="btn btn-default" type='button' disabled>Valider</button>
+                  </span>
+                </div>
+              </div>
+
+              <span id="correction" class="col-md-1"></span>
+            </div>
+
+            <div class="row">
+              <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger btn" type="button">
                 <span class="glyphicon glyphicon-remove"></span>Je passe !
               </button>
             </div> 
