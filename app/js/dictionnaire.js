@@ -1,6 +1,21 @@
 var mots = [],
 	MotCourant;
 
+function Mot(fr,en,score){
+	this.fr = fr;
+	this.en = en;
+	this.reussite = 0;
+	this.ok = 0;
+	this.ko = 0;
+	if(langue.value === 'en'){
+		this.motAAfficher = this.fr;
+		this.motADeviner = this.en;
+	}else if(langue.value === 'fr'){
+		this.motAAfficher = this.en;
+		this.motADeviner = this.fr;
+	}
+}
+
 var Dictionnaire = {
 	isCorrect : function(saisie){
 		var motADeviner = MotCourant.motADeviner;

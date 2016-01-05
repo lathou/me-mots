@@ -1,4 +1,6 @@
-var motsValides = [];
+var motsValides = [],
+	ok = 0,
+	ko = 0;
 
 var Score = {
 	afficher : function(){

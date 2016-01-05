@@ -1,16 +1,15 @@
-var repetition,
-	ok = 0,
-	ko = 0;
+var repetition;
 
-var form = document.getElementById('test');
-var motTest = document.getElementById('motTest');
-var inputReponse = document.getElementById('inputReponse');
-var btnValider = document.getElementById('valider');
-var btnPasse = document.getElementById('passe');
-var correction = document.getElementById('correction');
-var compteurOk = document.getElementById('compteurOk');
-var compteurKo = document.getElementById('compteurKo');
-var progressBar = document.getElementById('progressBar');
+var form = document.getElementById('test'),
+	motTest = document.getElementById('motTest'),
+	inputReponse = document.getElementById('inputReponse'),
+	btnValider = document.getElementById('valider'),
+	btnPasse = document.getElementById('passe'),
+	correction = document.getElementById('correction'),
+	compteurOk = document.getElementById('compteurOk'),
+	compteurKo = document.getElementById('compteurKo'),
+	progressBar = document.getElementById('progressBar');
+
 document.addEventListener('keydown', function(e){
 	if(e.keyCode === 13){
 		e.preventDefault();
@@ -30,30 +29,14 @@ btnOption.addEventListener('click', function(){
 		repetition = inputRepetition.value;
 
 		//Initialisation des mots
-		function Mot(fr,en,score){
-			this.fr = fr;
-			this.en = en;
-			this.reussite = 0;
-			this.ok = 0;
-			this.ko = 0;
-			if(langue.value === 'en'){
-				this.motAAfficher = this.fr;
-				this.motADeviner = this.en;
-			}else if(langue.value === 'fr'){
-				this.motAAfficher = this.en;
-				this.motADeviner = this.fr;
-			}
-		}
-
 		var mot1 = new Mot('soleil', 'sun');
 		var mot2 = new Mot('chocolat', 'chocolate');
 		var mot3 = new Mot('singe', 'monkey');
-		/*var mot4 = new Mot('fauteuil', 'sofa');
+		var mot4 = new Mot('fauteuil', 'sofa');
 		var mot5 = new Mot('stylo', 'pen');
 		var mot6 = new Mot('lit', 'bed');
 		var mot7 = new Mot('porte', 'door');*/
-		mots.push(mot1, mot2, mot3/*, mot4, mot5, mot6, mot7*/);
-
+		mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
 
 		//Départ
 		fenetreTest.style.display = 'block';
@@ -66,7 +49,6 @@ btnOption.addEventListener('click', function(){
 
 		afficherNouveauMot();
 		Score.afficher();				
-		init();
 	}
 }, false);
 
@@ -76,8 +58,8 @@ btnOption.addEventListener('click', function(){
 function init(){
 	inputReponse.addEventListener('keyup', griserBoutonValider, false);
 	btnValider.addEventListener('click', afficherCorrection, false);
-	btnPasse.addEventListener('click', afficherFaux, false);
 	document.addEventListener('keydown', validerParEntree, false);
+	btnPasse.addEventListener('click', afficherFaux, false);
 
 	form.className = 'jumbotron text-center';
 	correction.className='col-md-1';
