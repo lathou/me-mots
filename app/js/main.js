@@ -35,7 +35,7 @@ btnOption.addEventListener('click', function(){
 		var mot4 = new Mot('fauteuil', 'sofa');
 		var mot5 = new Mot('stylo', 'pen');
 		var mot6 = new Mot('lit', 'bed');
-		var mot7 = new Mot('porte', 'door');*/
+		var mot7 = new Mot('porte', 'door');
 		mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
 
 		//Départ
