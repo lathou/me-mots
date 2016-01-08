@@ -4,7 +4,6 @@ var mots = [],
 function Mot(fr,en,score){
 	this.fr = fr;
 	this.en = en;
-	this.reussite = 0;
 	this.ok = 0;
 	this.ko = 0;
 	if(langue.value === 'en'){
@@ -13,6 +12,10 @@ function Mot(fr,en,score){
 	}else if(langue.value === 'fr'){
 		this.motAAfficher = this.en;
 		this.motADeviner = this.fr;
+	}
+
+	this.getPoids = function(){
+		return repetition - this.ok;
 	}
 }
 
@@ -30,8 +33,16 @@ var Dictionnaire = {
 	genererMot : function(){
 		if(mots.length>1){
 			var ancienMot = MotCourant;
+
+			var motsAvecPoids = [];
+			mots.forEach(function(mot){
+				for (var i = 0; i<mot.getPoids(); i++){
+					motsAvecPoids.push(mot);
+				}
+			});
+
 			while(MotCourant === ancienMot || !MotCourant){
-				MotCourant = mots[Math.floor(Math.random()*mots.length)];
+				MotCourant = motsAvecPoids[Math.floor(Math.random()*motsAvecPoids.length)];
 			}
 		} else if(mots.length === 1){
 			MotCourant = mots[0];	

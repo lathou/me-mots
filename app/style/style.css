@@ -16,7 +16,10 @@ body{
 }
 
 footer{
+  width : 100%;
   height : 65px;
+  position: fixed;
+  bottom: 0px;
 }
 
 .nav{
@@ -40,7 +43,7 @@ h3, .h3{
 }
 
 section{ 
-  margin : 60px;
+  margin : 50px;
 }
 
 .container .jumbotron{
@@ -78,7 +81,7 @@ li{
 }
 
 /*----------------- TEST -----------------*/
-#test-window{
+#test-window, #resultat-window{
   display : none;
 }
 

@@ -17,10 +17,9 @@ var Score = {
 
 	augmenter : function(){
 		ok++;
-		MotCourant.reussite++;
 		MotCourant.ok++;
 
-		if(MotCourant.reussite >= repetition){
+		if(MotCourant.ok >= repetition){
 			mots.splice(mots.indexOf(MotCourant),1);
 			motsValides.push(MotCourant);
 		}
@@ -28,7 +27,6 @@ var Score = {
 
 	diminuer : function(){
 		ko++;
-		MotCourant.reussite = 0;
 		MotCourant.ko++;
 	}
 }

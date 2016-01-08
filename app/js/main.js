@@ -1,5 +1,10 @@
 var repetition;
 
+//Pages
+var fenetreOption = document.getElementById('options-window'),
+	fenetreTest = document.getElementById('test-window'),
+	fenetreResultat = document.getElementById('resultat-window');
+
 var form = document.getElementById('test'),
 	motTest = document.getElementById('motTest'),
 	inputReponse = document.getElementById('inputReponse'),
@@ -18,8 +23,6 @@ document.addEventListener('keydown', function(e){
 
 //Options
 var btnOption = document.getElementById('btnOption'),
-	fenetreOption = document.getElementById('options-window'),
-	fenetreTest = document.getElementById('test-window'),
 	inputRepetition = document.getElementById('repetition'),
 	langue = document.getElementById('langues'),
 	langueChoisie = document.getElementById('langueChoisie');
@@ -33,10 +36,10 @@ btnOption.addEventListener('click', function(){
 		var mot2 = new Mot('chocolat', 'chocolate');
 		var mot3 = new Mot('singe', 'monkey');
 		var mot4 = new Mot('fauteuil', 'sofa');
-		var mot5 = new Mot('stylo', 'pen');
+		/*var mot5 = new Mot('stylo', 'pen');
 		var mot6 = new Mot('lit', 'bed');
-		var mot7 = new Mot('porte', 'door');
-		mots.push(mot1, mot2, mot3, mot4, mot5, mot6, mot7);
+		var mot7 = new Mot('porte', 'door');*/
+		mots.push(mot1, mot2, mot3, mot4/*, mot5, mot6, mot7*/);
 
 		//Départ
 		fenetreTest.style.display = 'block';
@@ -54,6 +57,7 @@ btnOption.addEventListener('click', function(){
 
 /*******************-Fonctions-***************************/
 
+//Test
 
 function init(){
 	inputReponse.addEventListener('keyup', griserBoutonValider, false);
@@ -99,8 +103,7 @@ function afficherNouveauMot(){
 	if(mots.length >= 1){
 		motTest.innerHTML = Dictionnaire.genererMot().motAAfficher;
 	}else{
-		motTest.innerHTML = ' ';
-		desactiverBoutonEtInput();
+		afficherResultats();
 	}	
 }
 
@@ -135,3 +138,10 @@ function afficherFaux(){
 	Score.afficher();
 	setTimeout(afficherNouveauMot, 1000);
 }
+
+//Resultats
+function afficherResultats(){
+	fenetreTest.style.display = 'none';
+	fenetreResultat.style.display = 'block';
+}
+
