@@ -139,3 +139,35 @@ li{
 #compteurOk{
   color : green;
 }
+
+/*----------------- Resultats -----------------*/
+#bon{
+  color : green;
+}
+
+#moyen{
+  color : orange;
+}
+
+#mauvais{
+  color : #E80000;
+}
+
+#resultat-window p {
+  margin : 0;
+}
+
+#bon, #moyen, #mauvais{
+  border-left: 1px solid #d2d2d2;
+  padding : 5px 20px;
+  margin-left: 20px;
+}
+
+#resultat-window h2{
+  margin-bottom: 40px;
+}
+
+#resultat-window h3{
+  margin-top: 0px;
+  font-weight: 600;
+}

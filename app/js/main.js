@@ -4,6 +4,9 @@ var repetition;
 var fenetreOption = document.getElementById('options-window'),
 	fenetreTest = document.getElementById('test-window'),
 	fenetreResultat = document.getElementById('resultat-window');
+	bon = document.getElementById('bon');
+	moyen = document.getElementById('moyen');
+	mauvais = document.getElementById('mauvais');
 
 var form = document.getElementById('test'),
 	motTest = document.getElementById('motTest'),
@@ -143,5 +146,19 @@ function afficherFaux(){
 function afficherResultats(){
 	fenetreTest.style.display = 'none';
 	fenetreResultat.style.display = 'block';
+	
+	Score.classerResultats().forEach(function(mot){
+		var p = document.createElement('p');
+		p.innerHTML = mot.motAAfficher + ' : '+ mot.motADeviner;
+
+		console.log(mot.score);
+		if(mot.score>=0.8){
+			bon.appendChild(p);
+		}else if (mot.score<0.7 && mot.score>=0.5){
+			moyen.appendChild(p);
+		}else if(mot.score < 0.5){
+			mauvais.appendChild(p);
+		}
+	})
 }
 

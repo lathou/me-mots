@@ -28,5 +28,23 @@ var Score = {
 	diminuer : function(){
 		ko++;
 		MotCourant.ko++;
+	},
+
+	classerResultats : function(){
+		motsValides.forEach(function(mot){
+			mot.score = mot.ok/(mot.ko+mot.ok);
+			console.log(mot.score);
+		});
+
+		var motsValidesTries = motsValides.sort(function (a, b) {
+		    if (a.score> b.score)
+		      return 1;
+		    if (a.score < b.score)
+		      return -1;
+		    // a doit être égale à b
+		    return 0;
+		});
+
+		return motsValidesTries;
 	}
 }
