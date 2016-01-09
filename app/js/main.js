@@ -1,22 +1,20 @@
-var repetition;
+var repetition, dateDebut, dateFin;
 
 //Pages
 var fenetreOption = document.getElementById('options-window'),
 	fenetreTest = document.getElementById('test-window'),
-	fenetreResultat = document.getElementById('resultat-window');
-	bon = document.getElementById('bon');
-	moyen = document.getElementById('moyen');
-	mauvais = document.getElementById('mauvais');
+	fenetreResultat = document.getElementById('resultat-window'),
+	bon = document.getElementById('bon'),
+	moyen = document.getElementById('moyen'),
+	mauvais = document.getElementById('mauvais'),
+	temps = document.getElementById('temps');
 
 var form = document.getElementById('test'),
 	motTest = document.getElementById('motTest'),
 	inputReponse = document.getElementById('inputReponse'),
 	btnValider = document.getElementById('valider'),
 	btnPasse = document.getElementById('passe'),
-	correction = document.getElementById('correction'),
-	compteurOk = document.getElementById('compteurOk'),
-	compteurKo = document.getElementById('compteurKo'),
-	progressBar = document.getElementById('progressBar');
+	correction = document.getElementById('correction');
 
 document.addEventListener('keydown', function(e){
 	if(e.keyCode === 13){
@@ -52,7 +50,7 @@ btnOption.addEventListener('click', function(){
 		}else if(langue.value === 'fr'){
 			langueChoisie.innerHTML = 'Français';
 		}
-
+		dateDebut = new Date();
 		afficherNouveauMot();
 		Score.afficher();				
 	}
@@ -144,21 +142,22 @@ function afficherFaux(){
 
 //Resultats
 function afficherResultats(){
+	dateFin = new Date();
 	fenetreTest.style.display = 'none';
 	fenetreResultat.style.display = 'block';
-	
-	Score.classerResultats().forEach(function(mot){
-		var p = document.createElement('p');
-		p.innerHTML = mot.motAAfficher + ' : '+ mot.motADeviner;
 
-		console.log(mot.score);
+	Score.classerResultats().forEach(function(mot){
 		if(mot.score>=0.8){
-			bon.appendChild(p);
+			bon.innerHTML += '<p>' + mot.motAAfficher + ' : '+ mot.motADeviner + '</p>';
 		}else if (mot.score<0.7 && mot.score>=0.5){
-			moyen.appendChild(p);
+			moyen.innerHTML += '<p>' + mot.motAAfficher + ' : '+ mot.motADeviner + '</p>';
 		}else if(mot.score < 0.5){
-			mauvais.appendChild(p);
+			mauvais.innerHTML += '<p>' + mot.motAAfficher + ' : '+ mot.motADeviner + '</p>';
 		}
-	})
+	});
+	console.log(dateFin-dateDebut);
+	temps.innerHTML += '<p>'+ Score.getTemps(dateFin, dateDebut)+ '</p>';
+	
+
 }
 

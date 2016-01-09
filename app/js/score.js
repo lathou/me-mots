@@ -2,6 +2,11 @@ var motsValides = [],
 	ok = 0,
 	ko = 0;
 
+var compteurOk = document.getElementById('compteurOk'),
+	compteurKo = document.getElementById('compteurKo'),
+	progressBar = document.getElementById('progressBar');
+
+
 var Score = {
 	afficher : function(){
 		compteurOk.innerHTML = ok + ' <span class="glyphicon glyphicon-ok"></span>';
@@ -33,18 +38,26 @@ var Score = {
 	classerResultats : function(){
 		motsValides.forEach(function(mot){
 			mot.score = mot.ok/(mot.ko+mot.ok);
-			console.log(mot.score);
 		});
 
 		var motsValidesTries = motsValides.sort(function (a, b) {
-		    if (a.score> b.score)
-		      return 1;
-		    if (a.score < b.score)
-		      return -1;
-		    // a doit être égale à b
-		    return 0;
+		    if (a.score> b.score){
+		    	return 1;
+		    }else if (a.score < b.score){
+		    	return -1;
+		    }else{
+		    	return 0;
+		    }   
 		});
 
 		return motsValidesTries;
+	},
+
+	getTemps : function(dateFin, dateDebut){
+		var secondes = Math.floor((dateFin-dateDebut)/1000);
+		var minutes = Math.floor(secondes/60);
+		secondes = secondes - minutes*60;
+		var temps = minutes + 'min ' + secondes + 's ';
+		return temps;
 	}
 }

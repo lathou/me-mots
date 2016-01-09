@@ -69,7 +69,8 @@
           </form>     
 
           <div class="row col-md-offset-1 col-md-10" id="resultat">
-            <span class="badge col-md-1"  id="compteurOk"></span><span class="badge col-md-1" id="compteurKo"></span>
+            <span class="badge col-md-1 bon"  id="compteurOk"></span>
+            <span class="badge col-md-1 mauvais" id="compteurKo"></span>
             <div class="progress">
               <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
               </div>
@@ -81,17 +82,26 @@
 
         <div id="resultat-window">
           <h2>Resultats</h2>
-          <div class="text-left">
-            <div id = "bon" class = "col-md-3">
-              <h3> Bien ! </h3>
-            </div>
-            <div id="moyen" class = "col-md-3">
-              <h3>Encore un effort!</h3>
-            </div>
-            <div id = "mauvais" class = "col-md-3">
-              <h3>A revoir !</h3>
-            </div>
+          <table class="text-left col-md-9">
+            <tr>
+              <th class="bon"> <h3>Bien ! </h3></th>
+              <th class="moyen"><h3>Encore un effort !</h3></th>
+              <th class = "mauvais"><h3>A revoir !</h3></th>
+            </tr>
+
+            <tr>
+              <td id = "bon" class="bon"></td>
+              <td id="moyen" class="moyen"></td>
+              <td id = "mauvais" class="mauvais"></td>
+            </tr>
+            
+            
+          </table>
+          <div id = "temps" class = "col-md-offset-1 col-md-2 jumbotron text-center">
+              <h3>Temps</h3>
           </div>
+          </div>
+
         </div>
 
 

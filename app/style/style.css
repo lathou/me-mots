@@ -99,11 +99,6 @@ li{
 
 #correction{
   font-size: 35px;
-  color : #D9534F;
-}
-
-#correction.glyphicon-ok{
-   color : green;
 }
 
 #passe{
@@ -113,6 +108,7 @@ li{
 #passe .glyphicon-remove{
   margin-top : 4px; 
   float : left;
+  color : white;
 }
 
 .badge{
@@ -132,35 +128,31 @@ li{
   margin-top : -15px;
 }
 
-#compteurKo{
-  color : #D9534F;
-}
-
-#compteurOk{
-  color : green;
-}
-
 /*----------------- Resultats -----------------*/
-#bon{
+.bon, .glyphicon-ok{
   color : green;
 }
 
-#moyen{
+.moyen{
   color : orange;
 }
 
-#mauvais{
-  color : #E80000;
+.mauvais, .glyphicon-remove{
+  color : #D9534F;
 }
 
 #resultat-window p {
   margin : 0;
+
 }
 
-#bon, #moyen, #mauvais{
-  border-left: 1px solid #d2d2d2;
-  padding : 5px 20px;
-  margin-left: 20px;
+th, td{
+  padding : 5px 5px 5px 30px;
+  vertical-align: top;
+}
+
+td{
+  border-left: 1px solid #d2d2d2;  
 }
 
 #resultat-window h2{
@@ -168,6 +160,12 @@ li{
 }
 
 #resultat-window h3{
+  font-weight: bold;
   margin-top: 0px;
-  font-weight: 600;
+}
+
+
+#resultat-window .jumbotron{
+  padding : 10px;
+  margin-top: 30px;
 }
