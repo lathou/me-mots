@@ -7,10 +7,10 @@ function Mot(fr,en,score){
 	this.ok = 0;
 	this.ko = 0;
 	this.score=0;
-	if(langue.value === 'en'){
+	if(langue === 'en'){
 		this.motAAfficher = this.fr;
 		this.motADeviner = this.en;
-	}else if(langue.value === 'fr'){
+	}else if(langue === 'fr'){
 		this.motAAfficher = this.en;
 		this.motADeviner = this.fr;
 	}

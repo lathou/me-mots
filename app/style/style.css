@@ -1,9 +1,23 @@
 /*----------------- PAGE -----------------*/
-
+html{
+  height : 100%;
+}
 body{
   background-color: #F9F9F9;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 18px;
+  height : 100%;
+}
+
+.wrapper{
+  min-height : 100%;
+ margin-bottom: -65px;
+}
+
+.wrapper:after{
+  content:'';
+  display:block;
+  height : 65px;
 }
 
 .navbar, footer{
@@ -18,8 +32,6 @@ body{
 footer{
   width : 100%;
   height : 65px;
-  position: fixed;
-  bottom: 0px;
 }
 
 .nav{

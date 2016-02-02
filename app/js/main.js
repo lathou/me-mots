@@ -1,36 +1,16 @@
-var repetition, dateDebut, dateFin;
+var repetition, langue, dateDebut, dateFin;
 
-//Pages
-var fenetreOption = document.getElementById('options-window'),
-	fenetreTest = document.getElementById('test-window'),
-	fenetreResultat = document.getElementById('resultat-window'),
-	bon = document.getElementById('bon'),
-	moyen = document.getElementById('moyen'),
-	mauvais = document.getElementById('mauvais'),
-	temps = document.getElementById('temps');
-
-var form = document.getElementById('test'),
-	motTest = document.getElementById('motTest'),
-	inputReponse = document.getElementById('inputReponse'),
-	btnValider = document.getElementById('valider'),
-	btnPasse = document.getElementById('passe'),
-	correction = document.getElementById('correction');
-
-document.addEventListener('keydown', function(e){
+$(document).on('keydown', function(e){
 	if(e.keyCode === 13){
 		e.preventDefault();
 	}
-}, false);
+});
 
-//Options
-var btnOption = document.getElementById('btnOption'),
-	inputRepetition = document.getElementById('repetition'),
-	langue = document.getElementById('langues'),
-	langueChoisie = document.getElementById('langueChoisie');
+$('#btnOption').on('click', function(){
+	repetition = $('#repetition').val();
+	langue = $('#langues').val();
 
-btnOption.addEventListener('click', function(){
-	if(inputRepetition.value.length && inputRepetition.value > 0 && inputRepetition.value <= 10){
-		repetition = inputRepetition.value;
+	if(repetition.length && repetition > 0 && repetition <= 10){		
 
 		//Initialisation des mots
 		var mot1 = new Mot('soleil', 'sun');
@@ -43,37 +23,36 @@ btnOption.addEventListener('click', function(){
 		mots.push(mot1, mot2, mot3, mot4/*, mot5, mot6, mot7*/);
 
 		//Départ
-		fenetreTest.style.display = 'block';
-		fenetreOption.style.display = 'none';
-		if(langue.value === 'en'){
-			langueChoisie.innerHTML = 'Anglais';
-		}else if(langue.value === 'fr'){
-			langueChoisie.innerHTML = 'Français';
+		$('#test-window').css('display', 'block');
+		$('#options-window').css('display', 'none');
+		
+		if( langue === 'en'){
+			$('#langueChoisie').html('Anglais');
+		}else if(langue === 'fr'){
+			$('#langueChoisie').html('Français');
 		}
+
+		$('#inputReponse').on('keyup', griserBoutonValider);
+		$('#valider').on('click', afficherCorrection);
+		$('#inputReponse').on('keydown', validerParEntree);
+		$('#passe').on('click', afficherFaux);
+
 		dateDebut = new Date();
 		afficherNouveauMot();
 		Score.afficher();				
 	}
-}, false);
+});
 
 /*******************-Fonctions-***************************/
 
 //Test
 
 function init(){
-	inputReponse.addEventListener('keyup', griserBoutonValider, false);
-	btnValider.addEventListener('click', afficherCorrection, false);
-	document.addEventListener('keydown', validerParEntree, false);
-	btnPasse.addEventListener('click', afficherFaux, false);
-
-	form.className = 'jumbotron text-center';
-	correction.className='col-md-1';
-	inputReponse.value = '';	
-	inputReponse.style.color = '#555555';
-	inputReponse.disabled = false;
-	inputReponse.focus();
-	btnValider.disabled = true;
-	btnPasse.disabled = false;	
+	$('#test').removeClass('has-success').removeClass('has-error');
+	$('#correction').removeClass('glyphicon glyphicon-ok').removeClass('glyphicon glyphicon-remove');
+	$('#inputReponse').val('').css('color','#555555').removeAttr('disabled').focus();	
+	$('#valider').attr('disabled','disabled');
+	$('#passe').removeAttr('disabled');
 }
 
 function validerParEntree(e){
@@ -83,33 +62,31 @@ function validerParEntree(e){
 }
 
 function griserBoutonValider(){
-	if(inputReponse.value.length){
-		btnValider.disabled = false;
+	if($('#inputReponse').val()){
+		$('#valider').removeAttr('disabled');
 	}else{
-		btnValider.disabled = true;
+		$('#valider').attr('disabled','disabled');
 	}
 }
 
 function desactiverBoutonEtInput(){
-	btnValider.removeEventListener('click', afficherCorrection, false);
-	btnPasse.removeEventListener('click', afficherFaux, false);
-	document.removeEventListener('keydown',validerParEntree, false);
-	inputReponse.disabled = true;
-	btnValider.disabled = true;
-	btnPasse.disabled = true;
+	$(document).off('keydown',validerParEntree);
+	$('#inputReponse').attr('disabled','disabled');
+	$('#valider').attr('disabled','disabled');
+	$('#passe').attr('disabled','disabled');
 }
 
 function afficherNouveauMot(){	
 	init();
 	if(mots.length >= 1){
-		motTest.innerHTML = Dictionnaire.genererMot().motAAfficher;
+		$('#motTest').html(Dictionnaire.genererMot().motAAfficher);
 	}else{
 		afficherResultats();
 	}	
 }
 
 function afficherCorrection(){
-	var saisie = inputReponse.value;
+	var saisie = $('#inputReponse').val();
 
 	if (Dictionnaire.isCorrect(saisie)){		
 		afficherVrai();		
@@ -120,8 +97,8 @@ function afficherCorrection(){
 
 function afficherVrai(){	
 	desactiverBoutonEtInput();
-	correction.className='col-md-1 glyphicon glyphicon-ok';
-	form.className = 'jumbotron text-center has-success';
+	$('#correction').addClass('glyphicon glyphicon-ok');
+	$('#test').addClass('has-success');
 	
 	Score.augmenter();
 	Score.afficher();
@@ -130,10 +107,9 @@ function afficherVrai(){
 
 function afficherFaux(){	
 	desactiverBoutonEtInput();	
-	correction.className='col-md-1 glyphicon glyphicon-remove';
-	inputReponse.value = MotCourant.motADeviner;
-	inputReponse.style.color = 'red';
-	form.className = 'jumbotron text-center has-error';
+	$('#correction').addClass('glyphicon glyphicon-remove');
+	$('#inputReponse').val(MotCourant.motADeviner).css('color','red');
+	$('#test').addClass('has-error');
 	
 	Score.diminuer();
 	Score.afficher();
@@ -142,9 +118,13 @@ function afficherFaux(){
 
 //Resultats
 function afficherResultats(){
+	var bon = document.getElementById('bon'),
+		moyen = document.getElementById('moyen'),
+		mauvais = document.getElementById('mauvais'),
+		temps = document.getElementById('temps');
 	dateFin = new Date();
-	fenetreTest.style.display = 'none';
-	fenetreResultat.style.display = 'block';
+	$('#test-window').css('display', 'none');
+	$('#resultat-window').css('display','block');
 
 	Score.classerResultats().forEach(function(mot){
 		if(mot.score>=0.8){
@@ -155,9 +135,6 @@ function afficherResultats(){
 			mauvais.innerHTML += '<p>' + mot.motAAfficher + ' : '+ mot.motADeviner + '</p>';
 		}
 	});
-	console.log(dateFin-dateDebut);
 	temps.innerHTML += '<p>'+ Score.getTemps(dateFin, dateDebut)+ '</p>';
-	
-
 }
 
