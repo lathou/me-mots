@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mé-mots</title>
+    <title>Mémots</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Devonshire' rel='stylesheet' type='text/css'>
@@ -10,108 +10,100 @@
   </head>
   
   <body>
-<div class="wrapper">
-  <div class="clearfix"></div>
-    <nav class="navbar">
-      <h1 class="nav-header col-sm-4"><a class="nav-brand" href="#">Mé-Mots</a></h1>
-      <ul class="nav navbar-nav col-md-8 text-center">
-        <li class = "col-md-offset-6 col-md-2">Accueil</li>
-        <li class = "col-md-2">Mon compte</li>
-        <li class = "col-md-2">Contact</li>
-      </ul>
-    </nav>
+    <div class="wrapper">
+      <div class="clearfix"></div>
+      <nav class="navbar">
+        <div class="container">
+        <h1 class="nav-header"><a class="nav-brand" href="#">Mémots</a></h1>
+      </div>      
+      <ul class="nav navbar-nav text-center">
+          <li class = "col-md-offset-6 col-md-2"><a>Accueil</a></li>
+          <li class = "col-md-2"><a href="">Mon compte</a></li>
+          <li class = "col-md-2"><a href="">Contact</a></li>
+        </ul>
+      </nav>
 
-    <section class="container text-center">      
-      <div class="col-md-offset-1 col-md-10">
+      <div class="col-md-12 head">
+        <img src="img/img.jpg">  
 
-        <!--- Page d'options -->
-        <div id="options-window">
-          <h3>Choisissez vos options</h3>
-          <form id="options" class="form-inline jumbotron">           
-            <label for="repetition">Nombre de répétition pour chaque mot (entre 1 et 10): </label>
-            <input type="number" id="repetition" name="repetition" class="form-control" min="1" max="10"  oninput="if(value.length>2)value=value.slice(0,2)">
-            <br/>  
-            <label for="repetition">Dificulté : </label>          
-            <select name="langues" id="langues" class="form-control">
-              <option value="en">Français → Anglais</option>
-              <option value ="fr">Anglais → Français</option>
-            </select>
-            <br/>
-            <button type="button" class="btn btn-warning" id="btnOption">Lancer le test</button>
-          </form>
-        </div>
-
-        <!--- Page de test -->
-        <div id="test-window">
-          <h3>Entrez la traduction en <span id="langueChoisie"></span></h3>
-          <form method="post" action="" class="jumbotron" id="test"> 
-
-            <div class="row">
-              <label for="inputReponse" class="col-md-4" id="motTest"></label>
-
-              <div class="col-md-7">
-                <div class="input-group">
-                  <input type="text" name="mot" id="inputReponse" class="form-control" maxlength="40" autocomplete="off" autofocus/>
-
-                  <span class="input-group-btn">
-                    <button id="valider" class="btn btn-default" type='button' disabled>Valider</button>
-                  </span>
-                </div>
+        <div class="col-md-4 text-center connexion-inscription">
+          <div class="connexion">
+            <h2>Connexion</h2>
+            <form id="connexion" method="post" action"php/connexion.php" class="col-md-offset-1 col-md-10">  
+              <div class="form-group text-left">
+                <label for="connexion-mail">Adresse mail</label>
+                <input type="email" id="connexion-mail" name="mail" class="form-control " autofocus required/>
               </div>
 
-              <span id="correction" class="col-md-1"></span>
-            </div>
-
-            <div class="row">
-              <button id="passe" class="col-md-offset-5 col-md-2 btn btn-danger btn" type="button">
-                <span class="glyphicon glyphicon-remove"></span>Je passe !
-              </button>
-            </div> 
-          </form>     
-
-          <div class="row col-md-offset-1 col-md-10" id="resultat">
-            <span class="badge col-md-1 bon"  id="compteurOk"></span>
-            <span class="badge col-md-1 mauvais" id="compteurKo"></span>
-            <div class="progress">
-              <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+              <div class="form-group text-left">
+                <label for="connexion-mp">Mot de passe</label>
+                <input type="password" id="connexion-mp" name="mp" class="form-control " required/>
               </div>
-            </div>
-          </div>
-        </div> 
 
-        <!--- Page de resultats -->
-        <div id="resultat-window">
-          <h2>Resultats</h2>
-          <table class="text-left col-md-9">
-            <tr>
-              <th class="bon"> <h3>Bien ! </h3></th>
-              <th class="moyen"><h3>Encore un effort !</h3></th>
-              <th class = "mauvais"><h3>A revoir !</h3></th>
-            </tr>
+              <p>Pas encore inscrit?  <a class="yellow go-inscription">Inscription</a></p>
+              <button type="submit" class="btn btn-warning" id="btn-connexion">Connexion</button>
+            </form>
+          </div>              
 
-            <tr>
-              <td id = "bon" class="bon"></td>
-              <td id="moyen" class="moyen"></td>
-              <td id = "mauvais" class="mauvais"></td>
-            </tr>
-            
-            
-          </table>
-          <div id = "temps" class = "col-md-offset-1 col-md-2 jumbotron text-center">
-              <h3>Temps</h3>
+          <div class="inscription">
+            <h2>Inscription</h2>
+            <form id="inscription" method="post" action="php/inscription.php" class="col-md-offset-1 col-md-10">  
+              <div class="form-group text-left">         
+                <label for="inscription-pseudo">Pseudo</label>
+                <input type="text" id="inscription-pseudo" name="inscription-pseudo" class="form-control" autofocus required/>
+              </div>  
+              <div class="form-group text-left">
+                <label for="inscription-mail">Adresse mail</label>
+                <input type="email" id="inscription-mail" name="inscription-mail" class="form-control " required/>
+              </div>
+              <div class="form-group text-left">
+                <label for="langue-origine">Langue d'origine</label>
+                <select id="langue-origine" name="langue-origine" class="form-control " required/>
+                  <option value ="">-</option>
+                  <option value ="fr">Français</option>
+                </select>
+              </div>
+              <div class="form-group text-left">
+                <label for="inscription-mp">Mot de passe</label>
+                <input type="password" id="inscription-mp" name="inscription-mp" class="form-control " required/>
+              </div>
+              <p>Vous êtes déjà inscrit?  <a class="yellow go-connexion">Connexion</a></p>
+              <button type="submit" class="btn btn-warning" id="btn-inscription">Inscription</button>
+            </form>
           </div>
         </div>
+        <div class="clearfix"></div>
+      </div>
 
-      </div> 
-    </section>
-</div>
-    <footer>
-      <p>copyright © Lathou & Phiephie</p>
+      <section class="col-md-12 text-center">  
+        <div class="container"> 
+          <article class="col-md-6">
+            <h2>Mémot, Comment ça marche?</h2>
+            <p><strong>Pas toujours facile de réviser son vocabulaire quand on n'a personne pour nous faire réviser!</strong>
+               Mémot a été crée pour faciliter l'apprentissage du vocabulaire, dans la langue que vous souhaitez. Pour cela : </p>
+            <div>
+              <ul class="text-left">
+                <li>Inscrivez-vous</li>
+                <li>Créez vos listes de mots à réviser</li>
+                <li>Lancez le test</li>
+              </ul>
+            </div>
+          </article>
+          <article class="col-md-6">
+            <h2>A Propos</h2>
+            <p>Les voyages à travers le monde se multiplient, mais il est toujours plus sympa de voyager dans un pays dont on parle un peu la langue, pour pouvoir se débrouiller...C'est là qu'il devient interessant de réviser notre vocabulaire, de manière éfficace ! </p>
+            <p>C'est dans ce genre de situation que mémots rentre en jeu ! Et oui, c'est un peu du bourrage de crâne, mais pour le vocabulaire...c'est comme ça que ca marche n'est-ce pas !?
+          </article>
+        </div>
+      </section>
+    </div>
+    <footer class="col-md-12">
+      <div class="container text-center">
+        <p>copyright © Lathou & Phiephie</p>
+      </div>
     </footer>
 
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
-    <script src="js/dictionnaire.js" type="text/javascript"></script>
-    <script src="js/score.js" type="text/javascript"></script> 
     <script src="js/main.js" type="text/javascript"></script>
   </body>
 </html>
