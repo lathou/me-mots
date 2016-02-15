@@ -1,0 +1,11 @@
+-- téléchargement/impression de liste
+
+-- mettre les listes en commun (mais nessessite une verification) 
+
+-- Créer nous même des listes
+
+-- Insérer clavier d'autres langues
+
+-- Développer un côté ludique (badges, scores, mini-jeu, chronomètre, duels ??...) 
+
+-- Proposer un traduction directe lors du remplissage des listes, qui pourra être changée

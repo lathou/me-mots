@@ -12,7 +12,12 @@
 		})
 
 		//Départ
-		$('#langueChoisie').html(sessionStorage.optionLangue);
+		if(sessionStorage.optionLangue === 'option-langue1'){
+			$('#langueChoisie').html(sessionStorage.currentLangue);
+		}else if(sessionStorage.optionLangue === 'option-langue2'){
+			$('#langueChoisie').html(sessionStorage.langueOrigine);
+		}
+		
 
 		$('#inputReponse').on('keyup', griserBoutonValider);
 		$('#valider').on('click', afficherCorrection);

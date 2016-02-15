@@ -7,10 +7,10 @@ function Mot(motLangueOrigine,motLangue2,score){
 	this.ok = 0;
 	this.ko = 0;
 	this.score=0;
-	if(sessionStorage.optionLangue === 'Anglais'){
+	if(sessionStorage.optionLangue === 'option-langue1'){
 		this.motAAfficher = this.motLangueOrigine;
 		this.motADeviner = this.motLangue2;
-	}else if(sessionStorage.optionLangue === 'Français'){
+	}else if(sessionStorage.optionLangue === 'option-langue2'){
 		this.motAAfficher = this.motLangue2;
 		this.motADeviner = this.motLangueOrigine;
 	}

@@ -135,6 +135,8 @@
 			//chargement
 			$('.list-langue1').html(sessionStorage.langueOrigine);
 			$('.list-langue2').html(sessionStorage.currentLangue);
+			$('#options select option[value="option-langue1"]').html(sessionStorage.langueOrigine + ' → ' + sessionStorage.currentLangue);
+			$('#options select option[value="option-langue2"]').html( sessionStorage.currentLangue+ ' → ' + sessionStorage.langueOrigine);
 			apparitionLignes();
 			creationOuModification();
 
