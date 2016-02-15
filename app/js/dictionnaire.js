@@ -1,22 +1,22 @@
 var mots = [],
 	MotCourant;
 
-function Mot(fr,en,score){
-	this.fr = fr;
-	this.en = en;
+function Mot(motLangueOrigine,motLangue2,score){
+	this.motLangueOrigine = motLangueOrigine;
+	this.motLangue2 = motLangue2;
 	this.ok = 0;
 	this.ko = 0;
 	this.score=0;
-	if(langue === 'en'){
-		this.motAAfficher = this.fr;
-		this.motADeviner = this.en;
-	}else if(langue === 'fr'){
-		this.motAAfficher = this.en;
-		this.motADeviner = this.fr;
+	if(sessionStorage.optionLangue === 'Anglais'){
+		this.motAAfficher = this.motLangueOrigine;
+		this.motADeviner = this.motLangue2;
+	}else if(sessionStorage.optionLangue === 'Français'){
+		this.motAAfficher = this.motLangue2;
+		this.motADeviner = this.motLangueOrigine;
 	}
 
 	this.getPoids = function(){
-		return repetition - this.ok;
+		return sessionStorage.optionRepetition - this.ok;
 	}
 }
 

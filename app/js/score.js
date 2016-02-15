@@ -19,7 +19,7 @@ var Score = {
 		ok++;
 		MotCourant.ok++;
 
-		if(MotCourant.ok >= repetition){
+		if(MotCourant.ok >= sessionStorage.optionRepetition){
 			mots.splice(mots.indexOf(MotCourant),1);
 			motsValides.push(MotCourant);
 		}
@@ -32,7 +32,7 @@ var Score = {
 
 	classerResultats : function(){
 		motsValides.forEach(function(mot){
-			mot.score = mot.ok/(mot.ko+mot.ok);
+			mot.score = mot.ok*100/(mot.ko+mot.ok);
 		});
 
 		var motsValidesTries = motsValides.sort(function (a, b) {
@@ -52,7 +52,11 @@ var Score = {
 		var secondes = Math.floor((dateFin-dateDebut)/1000);
 		var minutes = Math.floor(secondes/60);
 		secondes = secondes - minutes*60;
-		var temps = minutes + 'min ' + secondes + 's ';
+		var temps = zero(minutes) + 'min ' + zero(secondes) + 's ';
 		return temps;
+	},
+
+	getScore : function(){
+		return(Math.floor(ok*100/(ok+ko)));
 	}
 }
