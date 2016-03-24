@@ -11,33 +11,32 @@
   
   <body>
     <div class="wrapper">
-      <div class="clearfix"></div>
-      <nav class="navbar ">
-        <div class="container">
+      <nav class="navbar container-fluid">
+        <div class="row">
           <h1 class="nav-header col-sm-2">
             <a class="nav-brand" href="index.html">Mémots</a>
             <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
               <span class="glyphicon glyphicon-menu-hamburger"></span>
             </button>
           </h1>
-            <div class="collapse navbar-collapse text-right">  
-              <ul class="nav navbar-nav text-center">
-                <li><a href="index.html">Accueil</a></li>
-                <li class = "compte "><a href="profil.html">Mon profil</a></li>
-                <li><a href="">Contact</a></li>
-              </ul>
-            </div>
-        </div>
+          <div class="collapse navbar-collapse text-right">  
+            <ul class="nav navbar-nav text-center">
+              <li><a href="index.html">Accueil</a></li>
+              <li class = "compte "><a href="profil.html">Mon profil</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </div>
+        </div>      
       </nav>
 
-      <section class="col-md-12">      
-        <div class="container">
+       <section class="section container-fluid">    
+
 
           <!--- Page de test -->
-          <div class="test">
-            <div class="page-content text-center">
-              <h3>Entrez la traduction en <span id="langueChoisie"></span></h3>
-              <form method="post" action="" class="jumbotron" id="test"> 
+          <div class="page test col-md-12">
+            <div class="page-content ">
+              <h3 class="text-center">Entrez la traduction en <span id="langueChoisie"></span></h3>
+              <form method="post" action="" class="text-center" id="test"> 
                 <div class="row">
                   <label for="inputReponse" class="col-md-4" id="motTest"></label>
 
@@ -55,30 +54,33 @@
                 </div>
 
                 <div class="row text-center">
-                  <button id="passe" class="btn-danger btn" type="button">
+                  <button id="passe" class="btn-yellow btn" type="button">
                     <span class="glyphicon glyphicon-remove"></span>Je passe !
                   </button>
                 </div> 
               </form>     
 
-              <div class="row col-md-offset-1 col-md-10" id="resultat">
-                <span class="badge col-md-1 bon"  id="compteurOk"></span>
-                <span class="badge col-md-1 mauvais" id="compteurKo"></span>
+              <div class="row" id="resultat">
+                <span class="badge bon"  id="compteurOk"></span>
+                <span class="badge mauvais" id="compteurKo"></span>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-warning" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                  <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                   </div>
                 </div>
               </div>
+              <a href="liste.html" class="small"><span class="glyphicon glyphicon-chevron-left small"></span> Retour</a>
             </div>
-            <a href="liste.html" class="small"><span class="glyphicon glyphicon-chevron-left small"></span> Retour</a>
+            
           </div> 
-        </div> 
+
       </section>
     </div>
 
-    <footer class="col-md-12">
-      <div class="container text-center">
-        <p class="small">copyright 2016 © Lathou</p>
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="small">copyright 2016 © Lathou & Phiephie</p>
+        </div>
       </div>
     </footer>
 

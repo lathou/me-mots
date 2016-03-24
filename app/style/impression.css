@@ -1,0 +1,16 @@
+.glyphicon, footer, nav, .score-list, .retour, .btn-test{
+	display : none;
+}
+
+.page{
+	background-image: none;
+}
+
+.page-header{
+	height : auto;
+}
+
+.page-content{
+	margin : 0;
+	padding : 0;
+}

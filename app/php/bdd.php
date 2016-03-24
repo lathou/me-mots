@@ -102,6 +102,7 @@
 									'motLangue2' => htmlspecialchars(addslashes(trim($mot->motLangue2))),
 									'score'=> $mot->score ));	
 			$req->closeCursor();
+
 		}
 	}
 

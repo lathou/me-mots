@@ -9,90 +9,111 @@
     <link rel="stylesheet" href="style/style.css">
   </head>
   
-  <body>
-<div class="wrapper">
-  <div class="clearfix"></div>
-      <nav class="navbar ">
-        <div class="container">
-          <h1 class="nav-header col-sm-2">
-            <a class="nav-brand" href="index.html">Mémots</a>
-            <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
-              <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </button>
-          </h1>
-            <div class="collapse navbar-collapse text-right">  
-              <ul class="nav navbar-nav text-center">
-                <li><a href="index.html">Accueil</a></li>
-                <li class = "compte "><a href="profil.html">Mon profil</a></li>
-                <li><a href="">Contact</a></li>
-              </ul>
-            </div>
-        </div>      
-      </nav>
-
-  <section class="col-md-12 text-left">
-    <div class="container">
-      <div class="page profil">
-        <div class="page-header">
-          <img class="avatar" src="img/avatar.jpg" alt="Votre Photo"/>
-          <div class="infos-profil">
-            <h1></h1>
-          </div>
+  <body> 
+    <div class="wrapper">
+    <nav class="navbar container-fluid">
+      <div class="row">
+        <h1 class="nav-header col-sm-2">
+          <a class="nav-brand" href="index.html">Mémots</a>
+          <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </h1>
+        <div class="collapse navbar-collapse text-right">  
+          <ul class="nav navbar-nav text-center">
+            <li><a href="index.html">Accueil</a></li>
+            <li class = "compte "><a href="profil.html">Mon profil</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
         </div>
-        <div class=" page-content">
-          <h2>Vos langues</h2>
-          <button type="button" data-toggle="modal" class=" btn btn-warning buttons" data-target="#ajout-langue">Ajouter une langue</button>
+      </div>      
+    </nav>
 
-          <div id="ajout-langue" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                  <h3>Choisissez la langue que vous voulez apprendre</h3>
-                  <form class="text-center" method ="post" action="php/ajout-langue.php">
-                    <select name="langue" class="form-control ajouter-langue">
-                      <option value=''>-</option>
-                      <option value="Allemand">Allemand</option>
-                      <option value="Anglais">Anglais</option>
-                      <option value="Espagnol">Espagnol</option>
-                      <option value="Français">Français</option>
-                      <option value="autre">Autre</option>
-                    </select><br>
-                    <button type="submit" class="ajout-langue-btn btn btn-warning" data-dismiss="modal">Ajouter</button>
-                  </form>
-                </div>
+    <section class="section container-fluid">
+      <div class="section row">
+        <div class="section page profil col-md-12">
+
+          <div class="page-header text-center">
+            <div class="avatar">
+              <img src="img/avatar.jpg" alt="Votre Photo"/>
+            </div>
+            <div class="infos-profil">
+              <h1></h1>
+              <div class="badges">
+                <h3>Mes badges</h3>
+                <span class="glyphicon glyphicon-star-empty" data-toggle="tooltip" title="Trilingue : Vous apprenez au moins 2 langues"></span>
+                <span class="glyphicon glyphicon-fire got" data-toggle="tooltip" title="Trilingue"></span>
+                <span class="glyphicon glyphicon-leaf" data-toggle="tooltip" title="Trilingue"></span>
+                <span class="glyphicon glyphicon-gift" data-toggle="tooltip" title="Trilingue"></span>
+                <span class="glyphicon glyphicon-thumbs-up" data-toggle="tooltip" title="Trilingue"></span>
+                <span class="glyphicon glyphicon-globe" data-toggle="tooltip" title="Prêt à voyager"></span>
+
               </div>
             </div>
           </div>
+          <div class="wrap">
+            <div class=" page-content text-left">
+              <div class="row">
+                <h2>Mes langues</h2>
+                <button type="button" data-toggle="modal" class=" btn btn-yellow buttons" data-target="#ajout-langue">Ajouter une langue</button>
+              </div>
 
-          <div id="accordion" class="language-list">
-          </div>  
-
-          <div id="supprimer-langue" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body text-center">
-                  <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                  <p>Êtes-vous certain de vouloir supprimer cette langue? <br/> Les listes qui y sont associées seront également supprimées</p>
-                  <button class="btn btn-warning supprimer-langue-btn" data-dismiss="modal">Certain !</button>
-                  <button class="btn btn-warning" data-dismiss="modal">En fait, non!</button>
-
+              <div id="ajout-langue" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                      <h3>Choisissez la langue que vous voulez apprendre</h3>
+                      <form class="text-center" method ="post" action="php/ajout-langue.php">
+                        <select name="langue" class="form-control ajouter-langue">
+                          <option value=''>-</option>
+                          <option value="Allemand">Allemand</option>
+                          <option value="Anglais">Anglais</option>
+                          <option value="Belge">Belge</option>
+                          <option value="Espagnol">Espagnol</option>
+                          <option value="Français">Français</option>
+                          <option value="Italien">Italien</option>
+                          <option value="Portugais">Portugais</option>
+                          <option value="Vietnamien">Vietnamien</option>
+                          <option value="autre">Autre</option>
+                        </select><br>
+                        <button type="submit" class="ajout-langue-btn btn btn-yellow" data-dismiss="modal">Ajouter</button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div id="accordion" class="language-list"></div>  
+
+              <div id="supprimer-langue" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body text-center">
+                      <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                      <p>Êtes-vous certain de vouloir supprimer cette langue? <br/> Les listes qui y sont associées seront également supprimées</p>
+                      <button class="btn btn-yellow supprimer-langue-btn" data-dismiss="modal">Certain !</button>
+                      <button class="btn btn-yellow" data-dismiss="modal">En fait, non!</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
+
         </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
 
-    <footer class="col-md-12">
-      <div class="container text-center">
-        <p class="small">copyright 2016 © Lathou</p>
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="small">copyright 2016 ©</p>
+        </div>
       </div>
     </footer>
-
+</div>
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/bdd.js" type="text/javascript"></script>

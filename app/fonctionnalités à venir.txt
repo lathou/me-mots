@@ -1,8 +1,6 @@
--- téléchargement/impression de liste
+-- sécuriser avec cookie
 
--- mettre les listes en commun (mais nessessite une verification) 
-
--- Créer nous même des listes
+-- mettre les listes en commun (mais nessessite une verification) / Créer nous même des listes
 
 -- Insérer clavier d'autres langues
 

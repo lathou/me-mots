@@ -6,109 +6,131 @@
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Devonshire' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" type='text/css' href="style/style.css">
+    <link rel="stylesheet" type='text/css' href="style/impression.css" media="print" />
   </head>
   
   <body>
     <div class="wrapper">
-      <div class="clearfix"></div>
-          <nav class="navbar ">
-            <div class="container">
-              <h1 class="nav-header col-sm-2">
-                <a class="nav-brand" href="index.html">Mémots</a>
-                <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
-                  <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </button>
-              </h1>
-                <div class="collapse navbar-collapse text-right">  
-                  <ul class="nav navbar-nav text-center">
-                    <li><a href="index.html">Accueil</a></li>
-                    <li class = "compte "><a href="profil.html">Mon profil</a></li>
-                    <li><a href="">Contact</a></li>
-                  </ul>
-                </div>
-            </div>
-          </nav>
+    <nav class="navbar container-fluid">
+      <div class="row">
+        <h1 class="nav-header col-sm-2">
+          <a class="nav-brand" href="index.html">Mémots</a>
+          <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </h1>
+        <div class="collapse navbar-collapse text-right">  
+          <ul class="nav navbar-nav text-center">
+            <li><a href="index.html">Accueil</a></li>
+            <li class = "compte "><a href="profil.html">Mon profil</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>      
+    </nav>
 
-      <section class="col-md-12 text-left">
-        <div class="container">
-          <div class="page list">
+    <section class="section container-fluid">
+      <div class="section row">
+        <div class="page list col-md-12 text-left">
 
-            <form class="sauvegarde-liste">
-              <div class="page-header">
-                <h2 class="list-name modifiable"></h2>
-                <span class="score-list">
+          <form class="section sauvegarde-liste">
+            <div class="page-header text-left">
+              <h1 class="list-name modifiable"></h1>                
+              <span class="buttons">
+                <a title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+              </span>
+              <div class="score-list">
+                <span id = "score">
+                    <span class="glyphicon glyphicon-bookmark"></span>
+                    <span class="content-score"></span>
+                </span> /
                 <span id = "temps">
                     <span class="glyphicon glyphicon-time"></span> 
                     <span class="content-time"></span>
                 </span>
-                <span id = "score">
-                    <span class="glyphicon glyphicon-bookmark"></span>
-                    <span class="content-score"></span>
-                </span> 
-              </span>   
-                <span class="buttons">
-                  <a title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
-                  <a title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
-                </span>
-              </div>
+              </div>    
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+              </p>            
+              <button class="btn btn-yellow btn-test"><span class="glyphicon glyphicon-education"></span> Lancer le test</button>  
+              <a href="profil.html" class="retour small"><span class="glyphicon glyphicon-chevron-left small"></span> Retour</a>  
+            </div>
 
-              <div id="supprimer-liste" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body text-center">
-                      <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                      <p>Êtes-vous certain de vouloir supprimer cette liste?</p>
-                      <button class="btn btn-warning supprimer-liste-btn" data-dismiss="modal">Certain !</button>
-                      <button class="btn btn-warning" data-dismiss="modal">En fait, non!</button>
-
-                    </div>
+            <div id="supprimer-liste" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <p>Êtes-vous certain de vouloir supprimer cette liste?</p>
+                    <button class="btn btn-yellow supprimer-liste-btn" data-dismiss="modal">Certain !</button>
+                    <button class="btn btn-yellow" data-dismiss="modal">En fait, non!</button>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class=" page-content">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th class="list-langue1">Langue1</th>
-                      <th class="list-langue2">Langue2</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+            <div class="wrap">
 
-                <button class="btn btn-warning btn-annuler">Annuler</button>
-                <button class="btn btn-warning btn-sauvegarde"><span class="glyphicon glyphicon-floppy-disk"></span> Sauvegarder</button>   
-              </div>
-            </form>
+            <div class=" page-content text-left">
+              <a class="buttons"><span onclick="window.print(); return false;" class="glyphicon glyphicon-print"></span> </a>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="list-langue1">Langue1</th>
+                    <th class="list-langue2">Langue2</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
 
-            <div class="page-content">
-              <form id="options" class="jumbotron">
-                  <div class="form-inline" action="">           
-                    <label for="repetition">Répétition pour chaque mot : </label>
-                    <input type="number" id="repetition" name="repetition" class="form-control" min="1" max="9" oninput="if(value.length>1)value=value.slice(0,1)" required>
+              <button class="btn btn-yellow btn-annuler">Annuler</button>
+              <button class="btn btn-yellow btn-sauvegarde"><span class="glyphicon glyphicon-floppy-disk"></span> Sauvegarder</button>  
+
+            </div>
+          </div>
+          </form>
+
+          <div id="lancer-test" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body text-center">
+
+                  <button class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                  <form id="options" class="text-left">
+                  <div class="form-group text-left">                    
                     <label for="repetition">Sens de traduction : </label>          
                     <select name="langues" id="langues" class="form-control">
                       <option value="option-langue1">Français → Anglais</option>
                       <option value ="option-langue2">Anglais → Français</option>
-                    </select>
-      
-                    <button class="btn btn-warning btn-test"><span class="glyphicon glyphicon-education"></span> Lancer le test</button>
+                    </select>  
+                    </div>
+                    <div class="form-group text-left">       
+                    <label for="repetition">Répétition pour chaque mot : </label>
+                    <input type="number" id="repetition" name="repetition" class="form-control" min="1" max="9" oninput="if(value.length>1)value=value.slice(0,1)" required>
                   </div>
-                </form>
-                <a href="profil.html" class="small"><span class="glyphicon glyphicon-chevron-left small"></span> Retour</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+                    <div class="text-center">
+                      <button class="btn btn-yellow"> Go !</button>  
+                    </div>
+                  </form>
 
-    <footer class="col-md-12">
-      <div class="container text-center">
-        <p class="small">copyright 2016 © Lathou</p>
+                </div>
+              </div>
+            </div>
+          </div>              
+        </div>
+      </div>
+    </section>
+
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="small">copyright 2016 ©</p>
+        </div>
       </div>
     </footer>
+  </div>
 
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>

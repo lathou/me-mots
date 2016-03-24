@@ -11,113 +11,110 @@
   
   <body>
     <div class="wrapper">
-      <div class="clearfix"></div>
-      <nav class="navbar ">
-        <div class="container">
-          <h1 class="nav-header col-sm-2">
-            <a class="nav-brand" href="index.html">Mémots</a>
-            <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
-              <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </button>
-          </h1>
-            <div class="collapse navbar-collapse text-right">  
-              <ul class="nav navbar-nav text-center">
-                <li><a href="#">Accueil</a></li>
-                <li class = "compte "><a href="profil.html">Mon profil</a></li>
-                <li><a href="">Contact</a></li>
-              </ul>
+    <nav class="navbar container-fluid">
+      <div class="row">
+        <h1 class="nav-header col-sm-2">
+          <a class="nav-brand" href="index.html">Mémots</a>
+          <button data-toggle="collapse" class="navbar-toggle" data-target=".navbar-collapse">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </h1>
+        <div class="collapse navbar-collapse text-right">  
+          <ul class="nav navbar-nav text-center">
+            <li><a href="index.html">Accueil</a></li>
+            <li class = "compte "><a href="profil.html">Mon profil</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>      
+    </nav>
+
+    <div class="col-md-12 head">
+      <div class="text-center connexion-inscription">
+        <div class="connexion">
+          <h2>Connexion</h2>
+          <form id="connexion" method="post" action="php/connexion.php" class="col-md-offset-1 col-md-10">  
+            <div class="form-group text-left">
+              <label for="connexion-mail">Adresse mail</label>
+              <input type="email" id="connexion-mail" name="mail" class="form-control " maxlength="200" autofocus required/>
             </div>
-        </div>      
-      </nav>
 
-      <div class="col-md-12 head">
-        <img src="img/img.jpg" alt="Memots">  
+            <div class="form-group text-left">
+              <label for="connexion-mp">Mot de passe</label>
+              <input type="password" id="connexion-mp" name="mp" class="form-control " maxlength="200" required/>
+            </div>
 
-        <div class="text-center connexion-inscription">
-          <div class="connexion">
-            <h2>Connexion</h2>
-            <form id="connexion" method="post" action="php/connexion.php" class="col-md-offset-1 col-md-10">  
-              <div class="form-group text-left">
-                <label for="connexion-mail">Adresse mail</label>
-                <input type="email" id="connexion-mail" name="mail" class="form-control " maxlength="200" autofocus required/>
-              </div>
-
-              <div class="form-group text-left">
-                <label for="connexion-mp">Mot de passe</label>
-                <input type="password" id="connexion-mp" name="mp" class="form-control " maxlength="200" required/>
-              </div>
-
-              <p>Pas encore inscrit?  <a class="yellow go-inscription">Inscription</a></p>
-              <button type="submit" class="btn btn-warning" id="btn-connexion">Connexion</button>
-            </form>
-          </div>
-
-          <div class="deconnexion">
-            <h2>Déconnexion</h2>
-            <button class="btn-deconnexion btn btn-warning">Deconnexion</button>   
-          </div>           
-
-          <div class="inscription">
-            <h2>Inscription</h2>
-            <form id="inscription" method="post" action="php/inscription.php" class="col-md-offset-1 col-md-10">  
-              <div class="form-group text-left">         
-                <label for="inscription-pseudo">Pseudo</label>
-                <input type="text" id="inscription-pseudo" name="inscription-pseudo" class="form-control" maxlength="200" required/>
-              </div>  
-              <div class="form-group text-left">
-                <label for="inscription-mail">Adresse mail</label>
-                <input type="email" id="inscription-mail" name="inscription-mail" class="form-control " maxlength="200" required/>
-              </div>
-              <div class="form-group text-left">
-                <label for="langue-origine">Langue d'origine</label>
-                <select id="langue-origine" name="langue-origine" class="form-control " required>
-                  <option value ="">-</option>
-                  <option value ="Français">Français</option>
-                </select>
-              </div>
-              <div class="form-group text-left">
-                <label for="inscription-mp">Mot de passe</label>
-                <input type="password" id="inscription-mp" name="inscription-mp" class="form-control " maxlength="200" required/>
-              </div>
-              <p>Vous êtes déjà inscrit?  <a class="yellow go-connexion">Connexion</a></p>
-              <button type="submit" class="btn btn-warning" id="btn-inscription">Inscription</button>
-            </form>
-          </div>
+            <p>Pas encore inscrit?  <a class="yellow go-inscription">Inscription</a></p>
+            <button type="submit" class="btn btn-yellow" id="btn-connexion">Connexion</button>
+          </form>
         </div>
-        <div class="clearfix"></div>
+
+        <div class="deconnexion">
+          <h2>Déconnexion</h2>
+          <button class="btn-deconnexion btn btn-yellow">Deconnexion</button>   
+        </div>           
+
+        <div class="inscription">
+          <h2>Inscription</h2>
+          <form id="inscription" method="post" action="php/inscription.php" class="col-md-offset-1 col-md-10">  
+            <div class="form-group text-left">         
+              <label for="inscription-pseudo">Pseudo</label>
+              <input type="text" id="inscription-pseudo" name="inscription-pseudo" class="form-control" maxlength="200" required/>
+            </div>  
+            <div class="form-group text-left">
+              <label for="inscription-mail">Adresse mail</label>
+              <input type="email" id="inscription-mail" name="inscription-mail" class="form-control " maxlength="200" required/>
+            </div>
+            <div class="form-group text-left">
+              <label for="langue-origine">Langue d'origine</label>
+              <select id="langue-origine" name="langue-origine" class="form-control " required>
+                <option value ="">-</option>
+                <option value ="Français">Français</option>
+              </select>
+            </div>
+            <div class="form-group text-left">
+              <label for="inscription-mp">Mot de passe</label>
+              <input type="password" id="inscription-mp" name="inscription-mp" class="form-control " maxlength="200" required/>
+            </div>
+            <p>Vous êtes déjà inscrit?  <a class="yellow go-connexion">Connexion</a></p>
+            <button type="submit" class="btn btn-yellow" id="btn-inscription">Inscription</button>
+          </form>
+        </div>
       </div>
-
-      <section class="col-md-12 text-center">  
-        <div class="container"> 
-          <div class="col-md-6">
-            <article>
-              <h2>Mémot, Comment ça marche?</h2>
-              <p><strong>Pas toujours facile de réviser son vocabulaire quand on n'a personne pour nous faire réviser!</strong><br/>
-                 Mémot a été crée pour faciliter l'apprentissage du vocabulaire, dans la langue que vous souhaitez parler. Pour cela : </p>
-              <div>
-                <ul>
-                  <li>♦ Inscrivez-vous</li>
-                  <li>♦ Créez vos listes de mots à réviser</li>
-                  <li>♦ Lancez le test</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <article>
-              <h2>A Propos</h2>
-              <p>Les voyages à travers le monde se multiplient, mais il est toujours plus sympa de voyager dans un pays dont on parle un peu la langue, pour pouvoir se débrouiller...C'est là qu'il devient interessant de réviser notre vocabulaire, de manière éfficace ! </p>
-              <p>C'est dans ce genre de situation que mémots rentre en jeu ! Et oui, c'est un peu du bourrage de crâne, mais pour le vocabulaire...c'est comme ça que ca marche n'est-ce pas !?
-            </article>
-          </div>
-        </div>
-      </section>
+      <div class="clearfix"></div>
     </div>
-    <footer class="col-md-12">
-      <div class="container text-center">
-        <p class="small">copyright 2016 © Lathou</p>
+
+    <section class="container">  
+      <div class="row"> 
+        <article class="col-md-6 text-center">
+          <h2>Mémot, Comment ça marche?</h2>
+          <p><strong>Pas toujours facile de réviser son vocabulaire quand on est seul!</strong><br/>
+             Mémot a été crée pour faciliter l'apprentissage du vocabulaire, dans la langue que vous souhaitez parler. Pour cela : </p>
+          <div>
+            <ul>
+              <li>♦ Inscrivez-vous</li>
+              <li>♦ Créez vos listes de mots à réviser</li>
+              <li>♦ Lancez le test</li>
+            </ul>
+          </div>
+        </article>
+        <article class="col-md-6 text-center">
+          <h2>A Propos</h2>
+          <p>Les voyages à travers le monde se multiplient, mais il est toujours plus sympa de voyager dans un pays dont on parle un peu la langue, pour pouvoir se débrouiller...C'est là qu'il devient interessant de réviser notre vocabulaire, de manière éfficace ! </p>
+          <p>C'est dans ce genre de situation que mémots rentre en jeu ! Et oui, c'est un peu du bourrage de crâne, mais pour le vocabulaire...c'est comme ça que ca marche n'est-ce pas !?
+        </article>
+      </div>
+    </section>
+  
+
+    <footer class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="small">copyright 2016 © Lathou & Phiephie</p>
+        </div>
       </div>
     </footer>
+  </div>
 
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>

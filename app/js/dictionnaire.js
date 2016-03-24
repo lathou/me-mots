@@ -6,7 +6,7 @@ function Mot(motLangueOrigine,motLangue2,score){
 	this.motLangue2 = motLangue2;
 	this.ok = 0;
 	this.ko = 0;
-	this.score=0;
+	this.score = score;
 	if(sessionStorage.optionLangue === 'option-langue1'){
 		this.motAAfficher = this.motLangueOrigine;
 		this.motADeviner = this.motLangue2;

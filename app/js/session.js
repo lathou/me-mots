@@ -1,5 +1,3 @@
-
-
 	/*************************************-GENERAL-**************************************/
 	afficherAccesProfil();
 
@@ -61,6 +59,7 @@
 		if(window.location.pathname === '/memots/profil.html'){
 
 			//Chargement
+			$('.badges span').tooltip();
 			 $('.infos-profil h1').html(sessionStorage.pseudo);
 			 $('.infos-profil h1').after('<p class="small"> Membre depuis le ' + sessionStorage.dateInscription + '</p>');
 			afficherLangues();
@@ -126,12 +125,18 @@
 			//accès à la liste
 			$('body').on('click','.go-list', function(){
 				sessionStorage.currentList = $(this).attr('id');
+				sessionStorage.currentLangue = $(this).data('liste').langue;
 				sessionStorage.setItem('mode', 'update');
 				document.location.href="liste.html";
 			});
 
 		/******************************************-LISTE-*****************************************/
 		}else if(window.location.pathname === '/memots/liste.html'){
+			$(window).on('keypress', function(e){
+				if(e.keyCode === 13){
+					e.preventDefault();
+				}
+			})
 			//chargement
 			$('.list-langue1').html(sessionStorage.langueOrigine);
 			$('.list-langue2').html(sessionStorage.currentLangue);
@@ -143,13 +148,17 @@
 			//annulation modifications
 			$('.btn-annuler').on('click', function(e){
 				e.preventDefault();
-				afficherModeLecture();
+				if(sessionStorage.mode ==='creer'){
+					window.location.pathname = '/memots/profil.html'; 
+				}else if(sessionStorage.mode === 'update'){
+					afficherModeLecture();
+				}	
 			});
 
 			// supression liste
 			$('.list .glyphicon-trash').on('click', function(){
 				$('#supprimer-liste').modal('toggle');
-				$('.modal-body').show();
+				$('#supprimer-liste .modal-body').show();
 			});
 
 			$('.supprimer-liste-btn').on('click', function(){
@@ -161,6 +170,11 @@
 			});
 
 			//Go test
+			$('.btn-test').on('click', function(e){
+				e.preventDefault();
+				$('#lancer-test').modal('toggle');
+				$('#lancer-test .modal-body').show();
+			})
 			$('#options').on('submit', function(e){
 				e.preventDefault();
 				sessionStorage.optionRepetition = $('#repetition').val();
@@ -231,6 +245,7 @@
 		tableListes.forEach(function(objet){
 			$('.'+objet.langue+ ' .no-list').remove();
 			$('.'+objet.langue).append('<p><a id="'+objet.id_liste+'" class="go-list">'+objet.nom+'</a></p>')
+			$('#'+objet.id_liste).data('liste', {'langue' : objet.langue});
 		});
 	}
 
@@ -246,24 +261,6 @@
 		});
 	}
 
-	function apparitionLignes(){
-		$('body').on('focus', '.list .page-content input', function(){
-			$(this).parent().parent().fadeTo(500, 1);
-		});
-		
-		$('body').on('focus','.mot2', function(){
-			if(!$(this).parent().next().is('tr')){
-				afficherLigneSuivante();
-				$('tr:last-child').hide().fadeIn();
-			}
-		});
-
-		$('body').on('click', '.glyphicon-remove', function(){
-			$(this).parent().parent().fadeOut();
-			$(this).parent().parent().find('input').val('');
-		});
-	}
-
 	function creationOuModification(){
 		if(sessionStorage.mode ==='creer'){
 			modeCreation();
@@ -276,6 +273,7 @@
 		afficherModeEdit();
 		$('.list .page-header input').attr({placeholder:'Nom de votre liste', required : true}).focus();
 		$('#options').hide();
+		$('.score-list').hide();
 		
 		$('.sauvegarde-liste').on('submit', function(e){
 			e.preventDefault();
@@ -306,7 +304,8 @@
 	}
 
 	function afficherModeLecture(){
-		$('#options').show();
+		$('.btn-test').show();
+		$('.glyphicon-print').show();
 		$('.glyphicon-pencil').on('click', afficherModeEdit);
 
 		Bdd.recupererListe(sessionStorage.id, sessionStorage.currentList, function technicalErrorCallback(){
@@ -322,12 +321,14 @@
 			var tableMots =  JSON.parse(sessionStorage.currentMots);                    
 			tableMots.forEach(function(mot, index){
 				$('.list .page-content tbody').append('<tr class="ligne'+ (index+1) +'"><td class="modifiable mot1"><p>'+mot.motLangueOrigine + '</p></td><td class="modifiable mot2"><p>' + mot.motLangue2 +'</p></td></tr>');
+				$('.ligne' + (index+1)).data("mot", {'motLangueOrigine' : mot.motLangueOrigine, 'motLangue2' : mot.motLangue2, 'score': mot.score});
+				
 				if(mot.score>=80){
-					$('.ligne'+ (index+1)).css('border-left', '5px solid green');
+					$('.ligne'+ (index+1)).css('border-left', '2px solid green');
 				}else if (mot.score<70 && mot.score>=50){
-					$('.ligne'+ (index+1)).css('border-left', '5px solid #FCD751');
+					$('.ligne'+ (index+1)).css('border-left', '2px solid #FCD751');
 				}else if(mot.score < 50 && mot.score > 0){
-					$('.ligne'+ (index+1)).css('border-left', '5px solid #D9534F');
+					$('.ligne'+ (index+1)).css('border-left', '2px solid #D9534F');
 				}else if(mot.score === 0){
 					$('.ligne'+ (index+1)).css('border', 'none');
 				}
@@ -336,7 +337,9 @@
 	}
 
 	function afficherModeEdit(){
-		$('#options').hide();
+
+		$('.btn-test').hide();
+		$('.glyphicon-print').hide();
 		$('.modifiable').each(function(){
 			var modifiable = $(this).children().html();
 			$(this).html('<input type="text" class="form-control input-modifiable"/>');
@@ -344,9 +347,9 @@
 		});
 		$('.btn-annuler').fadeIn();
 		$('.btn-sauvegarde').fadeIn();
-		$('.list-name input').addClass('input-lg').css({fontSize : '22px', opacity:'0.9'});
+		$('.list-name input').addClass('input-lg').css({opacity:'0.9'}).attr('required',true);
 		$('.glyphicon-pencil').off('click');
-		$('tbody tr').append('<td class="tr-remove"><span class="glyphicon glyphicon-remove"></span></td>')
+		
 		afficherLigneSuivante();
 	}
 
@@ -356,7 +359,28 @@
 		}else{
 			var ligne = 0;
 		}
+		$('.tr-remove').remove();
+		$('tbody tr').append('<td class="tr-remove"><span class="glyphicon glyphicon-remove"></span></td>')
 		$('tbody').append('<tr class="ligne'+ (ligne+1) +'"><td class=".modifiable mot1"><input type="text" class="form-control" maxlength="200"/></td><td class="modifiable mot2"><input type="text" class="form-control maxlength="200""/></td></tr>');
+	}
+
+	function apparitionLignes(){
+		$('body').on('focus', '.list .page-content input', function(){
+			$(this).parent().parent().fadeTo(500, 1);
+
+		});
+		
+		$('body').on('focus','.mot2', function(){
+			if(!$(this).parent().next().is('tr')){
+				afficherLigneSuivante();
+				$('tr:last-child').hide().fadeIn();
+			}
+		});
+
+		$('body').on('click', '.glyphicon-remove', function(){
+			$(this).parent().parent().fadeOut('fast');
+			$(this).parent().parent().find('input').val('');
+		});
 	}
 
 	function afficherErreur(element, message){
@@ -367,10 +391,31 @@
 	function getTableMots(){
 		var tableMots=[];
 		for(i=1; i<$('tr').length; i++){
-			var mot1 = $('.ligne'+i).children('.mot1').children().val();
-			var mot2 = $('.ligne'+i).children('.mot2').children().val();
-			if(mot1!=='' && mot2!==''){
-				tableMots.push(new Mot(mot1.toLowerCase(), mot2.toLowerCase()));
+			if($('.ligne' +i).css('display')!=='none'){
+				if($('.ligne' +i).data("mot")){
+					var mot1 = $('.ligne' +i).data("mot").motLangueOrigine;
+					var mot2 = $('.ligne'+i).data("mot").motLangue2;
+					var score = $('.ligne'+i).data("mot").score;
+
+				}else{
+					var mot1 = $('.ligne'+i).children('.mot1').children().val();
+					var mot2 = $('.ligne'+i).children('.mot2').children().val();
+					var score = '';
+				}			
+
+				//verification pas de doublon
+				if(mot1!=='' && mot2!==''){
+					var motDouble = 0;
+					tableMots.forEach(function(mot){
+						if(mot.motLangueOrigine === mot1 && mot.motLangue2 === mot2){
+							motDouble++;
+						}
+					})
+
+					if(motDouble === 0){
+						tableMots.push(new Mot(mot1.toLowerCase(), mot2.toLowerCase(), score));
+					}			
+				}
 			}
 		}
 		return tableMots;
