@@ -1,0 +1,629 @@
+@jaune : #FAD728;
+@jaune2 : #F7BD51;
+@jaune3 : #F0AD4E;
+@cyan : #93D4BE;
+@cyan_transp : rgba(0,162,108,0.4);
+@rouge : #D9534F;
+@background_content : rgba(249,249,249,0.97);
+
+.border-radius(@radius) {
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.transition-duration {
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+
+/*----------------- GENERAL-----------------*/
+
+html{
+  height:100%;
+}
+
+body{
+  background-color: #f9f9f9;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+  position : relative;
+  height : 100%;
+}
+
+article.col-md-6{
+  padding:40px 40px 60px;
+}
+
+h1, .h1{
+  margin : 0px;
+  font-family: 'Devonshire', cursive;
+  font-size: 45px;
+  text-transform: capitalize;
+}
+
+h2, .h2{
+  margin-top: 10px;
+}
+
+h3, .h3{
+  font-size : 22px;
+}
+
+a, a:visited, a:focus{
+  text-decoration: none;  
+  cursor : pointer;
+  color:black;
+}
+
+a:hover{
+  color:#868686;
+  text-decoration: none;  
+}
+
+ul{
+  list-style: none;
+  padding:0;
+}
+
+label{
+  font-weight: normal;
+  margin-bottom: 0px;
+}
+
+img{
+  width:auto;
+}
+
+.row, .page.col-md-12{
+  padding : 0px;
+  margin:0;
+}
+
+.form-control{
+  font-size : 16px;
+}
+
+.progress-bar{
+  background-color: @jaune2;
+}
+
+.yellow, .yellow:hover{
+  color:@jaune;
+  font-weight: bold;
+}
+
+.error-message{
+  color : @rouge;
+  font-size : 17px;
+  margin-bottom: -5px;
+}
+
+.has-error{
+  border-color:fade(@rouge, 60%);
+  box-shadow :0px 0px 5px fade(@rouge, 60%);
+}
+
+.has-success{
+  border-color:rgba(0,128,0,0.6);
+  box-shadow :0px 0px 5px rgba(0,128,0,0.6);
+}
+
+.bon, .glyphicon-ok{
+  color : green;
+}
+
+.mauvais, .glyphicon-remove{
+  color : @rouge;
+}
+
+/*Boutons & glyphicons cliquables*/
+
+.btn, .btn:hover, .btn:active, .btn:focus{
+  font-size : 16px;
+  height : 39px;
+  min-width: 100px;  
+  .transition-duration;
+  outline : none !important;
+}
+
+.btn .glyphicon, .btn .glyphicon:hover{
+  color : white;
+}
+
+.btn-yellow{
+  margin: 10px 5px;
+  background-color: @jaune2;
+  border-color : #F1B74C;
+  color : white;
+
+  &:hover, &:focus{  
+    color : white;
+    background-color: @jaune3;
+    border-color : @jaune3;
+  }
+}
+
+.buttons{
+  float:right;
+  margin-top: 5px;
+}
+
+.page-content .buttons .glyphicon, .modal .glyphicon, .tr-remove .glyphicon{
+  color : #dddddd;
+
+  &:hover{
+    color : @cyan;
+  }
+}
+
+.page-header .buttons .glyphicon{
+  color : white;
+  margin : 5px;  
+  opacity : 0.85;
+}
+
+.buttons .glyphicon{
+  cursor: pointer;
+  margin : 0 10px;
+}
+
+.buttons .glyphicon:hover, .close{
+  opacity : 1;
+}
+
+/*Modal*/
+
+.modal-dialog{
+  margin-top: 10%;
+}
+
+.modal .glyphicon-remove{
+  position : absolute;
+  top : -10px;
+  right:-5px;
+}
+
+.modal-content{
+  background-color: @background_content;
+  padding : 20px 20px 20px 20px;
+}
+
+/*Tableaux*/
+
+.table{
+  margin-bottom: 60px;
+
+  thead>tr>th{
+    background-color: @background_content;
+    padding-left: 20px;
+    border : none;
+  }
+
+  tbody>tr>td{
+    padding : 8px 20px;
+    border:none; 
+  }
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+  background-color: #F6F6F6;
+}
+
+/****** Navigation & Footer *******/
+
+.nav-brand, .nav-brand:hover, .nav-brand:focus, .nav-brand:visited{
+  color : white;
+  cursor : pointer;
+}
+
+.navbar-nav>li{
+  a, a:hover, a:focus, a:visited{
+    padding : 15px 25px;  
+    color : white;
+    background-color: rgba(0,0,0,0);
+    .transition-duration;
+  }
+
+  a:hover{
+    background-color: @jaune2;
+  }
+}
+
+.nav{
+  float:right;
+}
+
+.navbar-toggle{
+  font-size : 25px;
+  margin : 3px;
+  padding : 3px 5px;
+}
+
+.navbar, footer.container-fluid{ 
+  background-color : @jaune;
+  margin : 0px;
+  color : white;
+  .border-radius(0px);
+  box-shadow: 0px 2px 30px rgba(0,0,0,0.3);
+  border:none;
+  z-index:1000;
+  padding : 0 30px;
+}
+
+footer{
+  width : 100%;
+  height : 65px;
+}
+
+/************ pages *************/
+
+.wrapper{
+  display : table;
+  height : 100%;
+  width : 100%;
+}
+
+section{
+  display : table-row;
+}
+
+.section{
+  height : 100%;
+  position : relative;
+}
+
+.page{
+  background: url("../img/fond.jpg") no-repeat fixed;
+  background-size: cover; 
+  height : 100%;
+
+  h2{
+    display : inline-block;
+  }
+
+  .page-header{ 
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    height : 100%;
+    width : 260px;
+    margin : 0;
+    display : inline-block;
+    background-color: @cyan_transp;
+    border-bottom: none;
+    color : white;  
+    float: left;
+
+    a{
+      color : white;
+    }
+  }
+
+  .wrap{
+    margin-left: 260px;
+    text-align: center;
+  }
+
+  .page-content{
+    margin : 2% auto;
+    width : 95%;
+    display: inline-block;
+    padding : 40px 80px;
+    background-color: @background_content;
+    .border-radius(6px);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.1);
+  }
+}
+
+/*--------------------- ACCUEIL -----------------------*/
+
+.head{
+  padding : 0px;
+  height : 600px;
+  overflow:hidden;
+  background: url("../img/img.jpg");
+  background-size: cover;
+}
+
+.connexion-inscription{
+  position:absolute;
+  top : 20px;
+  right:20px;
+  width:425px;
+  background-color: @background_content;
+  padding : 20px 20px 40px 20px;
+  margin-right:40px;
+  .border-radius(5px);
+}
+
+.deconnexion, .inscription{
+  display:none;
+}
+
+/*---------------------- PROFIL ---------------------*/
+
+.profil{
+  .avatar{
+    height : 250px;
+    background-color: black;
+
+    img{
+      height : 250px;
+    }
+  }
+
+  .infos-profil{
+    padding : 10px;
+  }
+
+  .badges{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid white;
+
+    .glyphicon{
+      width : 30%;
+      font-size: 30px;
+      padding:5px 0px 20px;
+      opacity : 0.5;
+      cursor : pointer;
+
+      &.got{
+        opacity : 1;
+      }
+    }
+  }
+
+  .tooltip{
+    width : 100px;
+  }
+
+  .language-list{
+    margin : 20px 0px; 
+  }
+
+  #autre-langue{
+    margin-top: 10px;
+  }
+
+  .accordion-link, .accordion-link:visited,.accordion-link:hover,.accordion-link:focus{
+    color : black;
+    text-transform: capitalize;
+  }
+
+  .panel-heading{
+    border-bottom : 1px solid #F5F5F5;
+
+    .flag{
+      width : 30px;
+      margin-right: 10px;
+    }
+  }
+
+  .panel-body{
+    padding : 5px 20px 40px;
+    background-color: #FAFAFA;
+
+    .go-list{
+      display : inline-block;
+      width : 35%;
+      margin : 5px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: middle;
+      text-transform: capitalize;
+    }
+
+    .list-progress{
+      display : inline-block;
+      vertical-align: top;
+      width : 100px;  
+      height : 10px;
+      margin : 12px 2px 5px;
+    }
+  }
+}
+
+/*------------------------- LISTE ------------------------*/
+
+.list{
+  .page-header{
+    padding : 20px; 
+    padding-top: 2%;
+
+    h1{
+      width : 160px;
+      display : inline-block;
+      overflow : hidden;
+    }
+
+    .input-modifiable{
+      font-size: 28px;
+      color : #9A9795;
+    }
+
+    .buttons{
+      margin-top: 10px;
+    }
+
+    .score-list{
+      font-size: 20px;
+      text-align: left;
+      padding: 20px 0;
+      border-top: 1px solid white;
+
+      span{
+        padding : 0 2px;
+      }
+    }
+
+    .btn-test{
+      margin-bottom: 10px;
+      background-color: rgba(255,255,255,0.1);
+      border : 1px solid white;
+      width : 100%;
+
+      &:hover{
+        background-color: rgba(255,255,255,0.3);
+      }
+    }
+  }
+
+  .page-content {
+    table>thead>tr>th{
+      width : 49.9%;
+    }
+
+    table>tbody>tr{
+      opacity : 0.6;
+    }
+
+    .table p {
+      margin : 0;
+    }
+
+    .tr-remove{
+      padding : 0 10px 0 5px;
+      background-color: rgba(255,255,255, 0);
+
+      .glyphicon-remove{
+        margin-top : 13px;
+        cursor : pointer;
+      }
+    }
+
+    .btn-sauvegarde{
+      float:right;
+    }
+  }
+
+  #options input, #options select{
+    padding: 0px 0px 0px 5px;
+    margin-top : 5px;
+  }
+} 
+
+/*------------------------- TEST ------------------------------*/
+.test{
+  .page-content{
+    margin: 2% auto;
+    float : none;
+    display : block;
+    width : 90%;
+  }
+
+  #test{
+    background-color: rgba(245,245,245,0.5);
+    .border-radius(6px);
+    padding : 50px 20px;
+    margin: 10px 0;
+  }
+
+  #motTest{
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  #inputReponse{
+    height:39px;
+  }
+
+  .btn[disabled]{
+    cursor : default;
+  }
+
+  .btn-default:hover{
+    background-color: #F5F5F5;
+    border-color : #ccc;
+  }
+
+  .form-control[disabled]{
+    cursor : default;
+    background-color : #FFFFFF;
+  }
+
+  #correction{
+    font-size: 35px;
+  }
+
+  #valider{
+    margin : 0;
+  }
+
+  #passe{
+    margin-top: 40px;
+    
+    .glyphicon-remove{
+      margin-top : 4px; 
+      float : left;
+      color : white;
+    }
+  }
+
+  .badge{
+    margin-right : 4px;
+    .border-radius(3px);
+    background-color: #F3F3F3;
+    font-size: 14px;
+    float : left;
+  }
+
+  .progress{
+    height : 10px;
+    margin-bottom: 60px;
+    margin-top : 5px;
+  }
+}
+
+/*------------------------- RESPONSIVE ----------------------*/
+
+/*Tablettes*/
+
+@media (max-width: 992px){
+  .page{
+    .page-header{  
+      width : 100%;
+      position : relative;
+      height : auto;
+    }
+
+    .page-content{  
+      width : 96%;
+      clear : both;
+      padding : 40px 20px;
+    }
+
+    .wrap{
+      margin: 0 auto;
+    }  
+  }
+}
+
+/*Portables*/
+
+@media (max-width: 767px){
+  .nav {
+      width: 100%;
+      float:left;
+      margin : 7px 0px;
+  }
+
+  .navbar{
+    padding: 0px;
+  }
+
+  .connexion-inscription {
+    width: 90%;
+    right:5%;
+    margin:0;
+  }
+}
+
+@media (max-width: 400px){
+  .profil .btn.buttons{
+   float : none;
+  }
+}

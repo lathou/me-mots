@@ -243,9 +243,9 @@
 		var tableListes = JSON.parse(sessionStorage.listOfList);
 			
 		tableListes.forEach(function(objet){
-			$('.'+objet.langue+ ' .no-list').remove();
-			$('.'+objet.langue).append('<p><a id="'+objet.id_liste+'" class="go-list">'+objet.nom+'</a></p>')
-			$('#'+objet.id_liste).data('liste', {'langue' : objet.langue});
+			$('.'+ objet.langue + ' .no-list').remove();
+			$('.'+ objet.langue).append('<div><a id="'+ objet.id_liste +'" class="go-list">♦ '+ objet.nom +'</a><div class="progress list-progress"><div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: '+objet.score+'%;"></div></div><span class="small"> '+objet.score+'%</span></div>')
+			$('#'+ objet.id_liste).data('liste', {'langue' : objet.langue});
 		});
 	}
 
@@ -271,7 +271,7 @@
 
 	function modeCreation(){
 		afficherModeEdit();
-		$('.list .page-header input').attr({placeholder:'Nom de votre liste', required : true}).focus();
+		$('.list .page-header input').attr({placeholder:'Nom de liste', required : true}).focus();
 		$('#options').hide();
 		$('.score-list').hide();
 		
@@ -337,17 +337,16 @@
 	}
 
 	function afficherModeEdit(){
-
 		$('.btn-test').hide();
 		$('.glyphicon-print').hide();
 		$('.modifiable').each(function(){
 			var modifiable = $(this).children().html();
-			$(this).html('<input type="text" class="form-control input-modifiable"/>');
+			$(this).html('<input type="text" class="form-control input-modifiable" maxlength="200"/>');
 			$(this).children('.input-modifiable').val(modifiable);      
 		});
 		$('.btn-annuler').fadeIn();
 		$('.btn-sauvegarde').fadeIn();
-		$('.list-name input').addClass('input-lg').css({opacity:'0.9'}).attr('required',true);
+		$('.list-name input').addClass('input-lg').css({opacity:'0.9'}).attr("required", true);
 		$('.glyphicon-pencil').off('click');
 		
 		afficherLigneSuivante();
